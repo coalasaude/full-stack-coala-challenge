@@ -12,7 +12,7 @@ Construa um app para gerenciar livros que o usuário já leu ou deseja ler.
 O funcionamento esperado é o seguinte:
 - O usuário poderá adicionar livros à sua coleção, classificando cada livro como "lido" ou "quero ler".
 - O usuário poderá listar todos os seus livros.
-- EO app deve permitir que, a partir dessa lista, seja proposta uma troca: ou seja, o usuário pode oferecer um livro da sua lista de "quero ler" em troca de um livro da sua lista de "lidos".
+- O app deve permitir que, a partir dessa lista, seja proposta uma troca: ou seja, o usuário pode oferecer um livro da sua lista de "quero ler" em troca de um livro da sua lista de "lidos".
 
 **Importante:**
 Não é necessário implementar login ou controle de múltiplos usuários.
