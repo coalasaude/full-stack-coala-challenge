@@ -2,7 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./shared/infrasctructure/module/app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
-import { GlobalDomainErrorFilter } from "./shared/infrasctructure/filter/global-domain-error.filter";
+import { GlobalErrorFilter } from "./shared/infrasctructure/filter/global-error.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -24,9 +24,7 @@ async function bootstrap() {
     }),
   );
 
-  app.useGlobalFilters(
-    new GlobalDomainErrorFilter()
-  );
+  app.useGlobalFilters(new GlobalErrorFilter());
 
   app.enableCors({
     origin: "*",

@@ -4,6 +4,8 @@ import { Book as BookEntity, Prisma } from "generated/prisma";
 import { PrismaService } from "src/shared/infrasctructure/persistence/prisma/service/prisma.service";
 import { Book } from "../../../domain/entity/book";
 import { Paginated } from "src/shared/application/entity/paginated.entity";
+import { BookExchange } from "src/module/book/domain/entity/book-exchange";
+import { BookWithExchangesType } from "./type/book-with-exchanges.type";
 
 @Injectable()
 class BookRepositoryPrisma implements BookRepository {
@@ -12,13 +14,42 @@ class BookRepositoryPrisma implements BookRepository {
   async findById(id: string): Promise<Book | null> {
     const entity = await this.prisma.book.findUnique({
       where: { id },
+      include: {
+        desiredExchanges: {
+          include: {
+            desiredBook: true,
+            offeredBook: true,
+          },
+        },
+        offeredExchanges: {
+          include: {
+            desiredBook: true,
+            offeredBook: true,
+          },
+        },
+      },
     });
 
     if (!entity) {
       return null;
     }
 
-    return new Book(entity);
+    return new Book({
+      id: entity.id,
+      title: entity.title,
+      author: entity.author,
+      summary: entity.summary,
+      genre: entity.genre,
+      cover: entity.cover,
+      readed: entity.readed,
+      readedAt: entity.readedAt,
+      publisher: entity.publisher,
+      publishedAt: entity.publishedAt,
+      desiredExchanges: this.mapExchangesToEntity(entity.desiredExchanges),
+      offeredExchanges: this.mapExchangesToEntity(entity.offeredExchanges),
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+    });
   }
 
   async findByTitleAndAuthor(
@@ -64,6 +95,20 @@ class BookRepositoryPrisma implements BookRepository {
         skip,
         take: pageSize,
         orderBy: orderByClause,
+        include: {
+          desiredExchanges: {
+            include: {
+              desiredBook: true,
+              offeredBook: true,
+            },
+          },
+          offeredExchanges: {
+            include: {
+              desiredBook: true,
+              offeredBook: true,
+            },
+          },
+        },
       }),
       this.prisma.book.count({
         where,
@@ -71,7 +116,7 @@ class BookRepositoryPrisma implements BookRepository {
     ]);
 
     return new Paginated(
-      entities.map((entity) => new Book(entity)),
+      this.mapBooksExchangesToEntity(entities),
       totalItems,
       page,
       Math.ceil(totalItems / pageSize),
@@ -87,6 +132,47 @@ class BookRepositoryPrisma implements BookRepository {
     });
 
     return new Book(entity);
+  }
+
+  private mapBooksExchangesToEntity(books: BookWithExchangesType[]): Book[] {
+    return books.map(
+      (book) =>
+        new Book({
+          id: book.id,
+          title: book.title,
+          author: book.author,
+          summary: book.summary,
+          genre: book.genre,
+          cover: book.cover,
+          readed: book.readed,
+          readedAt: book.readedAt,
+          publisher: book.publisher,
+          publishedAt: book.publishedAt,
+          desiredExchanges: this.mapExchangesToEntity(book.desiredExchanges),
+          offeredExchanges: this.mapExchangesToEntity(book.offeredExchanges),
+          createdAt: book.createdAt,
+          updatedAt: book.updatedAt,
+        }),
+    );
+  }
+
+  private mapExchangesToEntity(
+    exchanges:
+      | BookWithExchangesType["desiredExchanges"]
+      | BookWithExchangesType["offeredExchanges"],
+  ): BookExchange[] {
+    return exchanges.map(
+      (exchange) =>
+        new BookExchange({
+          ...exchange,
+          desiredBook: exchange.desiredBook
+            ? new Book(exchange.desiredBook)
+            : null,
+          offeredBook: exchange.offeredBook
+            ? new Book(exchange.offeredBook)
+            : null,
+        }),
+    );
   }
 }
 

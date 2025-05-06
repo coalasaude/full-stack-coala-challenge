@@ -6,7 +6,7 @@ import { CreateBookExchangeResponse } from "../response/create-book-exchange.res
 
 @ApiTags("BookExchange")
 @Controller("book-exchange")
-export class BookExchangeController {
+class BookExchangeController {
   constructor(
     private readonly _createBookExchangeService: CreateBookExchangeService,
   ) {}
@@ -32,3 +32,5 @@ export class BookExchangeController {
     };
   }
 }
+
+export { BookExchangeController };

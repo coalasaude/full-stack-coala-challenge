@@ -1,5 +1,6 @@
 import { DomainEntity } from "src/shared/domain/entity/domain.entity";
 import { BookDTO } from "./dto/book.dto";
+import { BookExchange } from "./book-exchange";
 
 class Book implements DomainEntity<Book> {
   private _id: string;
@@ -12,6 +13,8 @@ class Book implements DomainEntity<Book> {
   private _readedAt: Date | null;
   private _publisher: string;
   private _publishedAt: Date;
+  private _desiredExchanges: BookExchange[];
+  private _offeredExchanges: BookExchange[];
   private _createdAt: Date;
   private _updatedAt: Date;
 
@@ -26,6 +29,8 @@ class Book implements DomainEntity<Book> {
     readedAt,
     publisher,
     publishedAt,
+    desiredExchanges,
+    offeredExchanges,
     createdAt,
     updatedAt,
   }: BookDTO) {
@@ -39,6 +44,8 @@ class Book implements DomainEntity<Book> {
     this.readedAt = readedAt;
     this.publisher = publisher;
     this.publishedAt = publishedAt;
+    this.desiredExchanges = desiredExchanges || [];
+    this.offeredExchanges = offeredExchanges || [];
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
@@ -128,6 +135,22 @@ class Book implements DomainEntity<Book> {
     this._readedAt = value;
   }
 
+  get desiredExchanges(): BookExchange[] {
+    return this._desiredExchanges;
+  }
+
+  set desiredExchanges(value: BookExchange[]) {
+    this._desiredExchanges = value;
+  }
+
+  get offeredExchanges(): BookExchange[] {
+    return this._offeredExchanges;
+  }
+
+  set offeredExchanges(value: BookExchange[]) {
+    this._offeredExchanges = value;
+  }
+
   get createdAt(): Date {
     return this._createdAt;
   }
@@ -156,6 +179,12 @@ class Book implements DomainEntity<Book> {
       readedAt: this.readedAt,
       publisher: this.publisher,
       publishedAt: this.publishedAt,
+      desiredExchanges: this.desiredExchanges.map((exchange) =>
+        exchange.toLiteral(),
+      ),
+      offeredExchanges: this.offeredExchanges.map((exchange) =>
+        exchange.toLiteral(),
+      ),
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };

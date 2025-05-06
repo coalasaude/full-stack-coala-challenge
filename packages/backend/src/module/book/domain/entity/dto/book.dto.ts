@@ -1,3 +1,5 @@
+import { BookExchange } from "../book-exchange";
+
 interface BookDTO {
   id: string;
   title: string;
@@ -9,6 +11,8 @@ interface BookDTO {
   readedAt: Date | null;
   publisher: string;
   publishedAt: Date;
+  desiredExchanges?: BookExchange[];
+  offeredExchanges?: BookExchange[];
   createdAt: Date;
   updatedAt: Date;
 }

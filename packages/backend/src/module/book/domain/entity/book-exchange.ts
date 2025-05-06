@@ -142,9 +142,9 @@ class BookExchange implements DomainEntity<BookExchange> {
   toLiteral(): this {
     return <this>{
       id: this.id,
-      offeredBook: this.offeredBook,
+      offeredBook: this.offeredBook?.toLiteral(),
       offeredBookId: this.offeredBookId,
-      desiredBook: this.desiredBook,
+      desiredBook: this.desiredBook?.toLiteral(),
       desiredBookId: this.desiredBookId,
       exchangeOwnerPhone: this.exchangeOwnerPhone,
       exchangedAt: this.exchangedAt,
