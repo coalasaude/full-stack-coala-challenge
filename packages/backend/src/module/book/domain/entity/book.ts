@@ -1,7 +1,8 @@
+import { DomainEntity } from "src/shared/domain/entity/domain.entity";
 import { BookDTO } from "./dto/book.dto";
 
-class Book {
-  private _id: string | null;
+class Book implements DomainEntity<Book> {
+  private _id: string;
   private _title: string;
   private _author: string;
   private _summary: string;
@@ -42,11 +43,11 @@ class Book {
     this.updatedAt = updatedAt;
   }
 
-  get id(): string | null {
+  get id(): string {
     return this._id;
   }
 
-  set id(value: string | null) {
+  set id(value: string) {
     this._id = value;
   }
 

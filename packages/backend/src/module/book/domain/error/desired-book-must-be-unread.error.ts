@@ -1,0 +1,8 @@
+import { DomainError } from "src/shared/domain/error/domain.error";
+
+export class DesiredBookMustBeUnreadError extends DomainError {
+  constructor(bookId: string) {
+    super(`The desired book with ID ${bookId} must be unread.`);
+    this.name = "DesiredBookMustBeUnreadError";
+  }
+}

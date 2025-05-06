@@ -135,6 +135,16 @@ exports.Prisma.BookScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BookExchangeScalarFieldEnum = {
+  id: 'id',
+  offeredBookId: 'offeredBookId',
+  desiredBookId: 'desiredBookId',
+  exchangeOwnerPhone: 'exchangeOwnerPhone',
+  exchangedAt: 'exchangedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -152,7 +162,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Book: 'Book'
+  Book: 'Book',
+  BookExchange: 'BookExchange'
 };
 
 /**

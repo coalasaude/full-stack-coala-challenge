@@ -28,7 +28,30 @@ model Book {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  offeredExchanges BookExchange[] @relation("offeredBook")
+  desiredExchanges BookExchange[] @relation("desiredBook")
+
   @@index([genre])
   @@index([author])
   @@index([readed])
+  @@index([createdAt])
+  @@index([updatedAt])
+}
+
+model BookExchange {
+  id                 String   @id @default(uuid()) @db.Uuid
+  offeredBookId      String   @db.Uuid
+  desiredBookId      String   @db.Uuid
+  exchangeOwnerPhone String
+  exchangedAt        DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  offeredBook        Book     @relation("offeredBook", fields: [offeredBookId], references: [id])
+  desiredBook        Book     @relation("desiredBook", fields: [desiredBookId], references: [id])
+
+  @@index([offeredBookId])
+  @@index([desiredBookId])
+  @@index([createdAt])
+  @@index([updatedAt])
 }

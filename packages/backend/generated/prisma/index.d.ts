@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type Book = $Result.DefaultSelection<Prisma.$BookPayload>
+/**
+ * Model BookExchange
+ * 
+ */
+export type BookExchange = $Result.DefaultSelection<Prisma.$BookExchangePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +158,16 @@ export class PrismaClient<
     * ```
     */
   get book(): Prisma.BookDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bookExchange`: Exposes CRUD operations for the **BookExchange** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookExchanges
+    * const bookExchanges = await prisma.bookExchange.findMany()
+    * ```
+    */
+  get bookExchange(): Prisma.BookExchangeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Book: 'Book'
+    Book: 'Book',
+    BookExchange: 'BookExchange'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +628,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "book"
+      modelProps: "book" | "bookExchange"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +703,80 @@ export namespace Prisma {
           count: {
             args: Prisma.BookCountArgs<ExtArgs>
             result: $Utils.Optional<BookCountAggregateOutputType> | number
+          }
+        }
+      }
+      BookExchange: {
+        payload: Prisma.$BookExchangePayload<ExtArgs>
+        fields: Prisma.BookExchangeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookExchangeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookExchangeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>
+          }
+          findFirst: {
+            args: Prisma.BookExchangeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookExchangeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>
+          }
+          findMany: {
+            args: Prisma.BookExchangeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>[]
+          }
+          create: {
+            args: Prisma.BookExchangeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>
+          }
+          createMany: {
+            args: Prisma.BookExchangeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookExchangeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>[]
+          }
+          delete: {
+            args: Prisma.BookExchangeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>
+          }
+          update: {
+            args: Prisma.BookExchangeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>
+          }
+          deleteMany: {
+            args: Prisma.BookExchangeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookExchangeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BookExchangeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>[]
+          }
+          upsert: {
+            args: Prisma.BookExchangeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookExchangePayload>
+          }
+          aggregate: {
+            args: Prisma.BookExchangeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookExchange>
+          }
+          groupBy: {
+            args: Prisma.BookExchangeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookExchangeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookExchangeCountArgs<ExtArgs>
+            result: $Utils.Optional<BookExchangeCountAggregateOutputType> | number
           }
         }
       }
@@ -775,6 +865,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     book?: BookOmit
+    bookExchange?: BookExchangeOmit
   }
 
   /* Types for Logging */
@@ -863,6 +954,45 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type BookCountOutputType
+   */
+
+  export type BookCountOutputType = {
+    offeredExchanges: number
+    desiredExchanges: number
+  }
+
+  export type BookCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    offeredExchanges?: boolean | BookCountOutputTypeCountOfferedExchangesArgs
+    desiredExchanges?: boolean | BookCountOutputTypeCountDesiredExchangesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BookCountOutputType without action
+   */
+  export type BookCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCountOutputType
+     */
+    select?: BookCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BookCountOutputType without action
+   */
+  export type BookCountOutputTypeCountOfferedExchangesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookExchangeWhereInput
+  }
+
+  /**
+   * BookCountOutputType without action
+   */
+  export type BookCountOutputTypeCountDesiredExchangesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookExchangeWhereInput
+  }
 
 
   /**
@@ -1089,6 +1219,9 @@ export namespace Prisma {
     publishedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    offeredExchanges?: boolean | Book$offeredExchangesArgs<ExtArgs>
+    desiredExchanges?: boolean | Book$desiredExchangesArgs<ExtArgs>
+    _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["book"]>
 
   export type BookSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1137,10 +1270,20 @@ export namespace Prisma {
   }
 
   export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "summary" | "genre" | "cover" | "readed" | "readedAt" | "publisher" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
+  export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    offeredExchanges?: boolean | Book$offeredExchangesArgs<ExtArgs>
+    desiredExchanges?: boolean | Book$desiredExchangesArgs<ExtArgs>
+    _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BookIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type BookIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $BookPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Book"
-    objects: {}
+    objects: {
+      offeredExchanges: Prisma.$BookExchangePayload<ExtArgs>[]
+      desiredExchanges: Prisma.$BookExchangePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
@@ -1548,6 +1691,8 @@ export namespace Prisma {
    */
   export interface Prisma__BookClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    offeredExchanges<T extends Book$offeredExchangesArgs<ExtArgs> = {}>(args?: Subset<T, Book$offeredExchangesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    desiredExchanges<T extends Book$desiredExchangesArgs<ExtArgs> = {}>(args?: Subset<T, Book$desiredExchangesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1606,6 +1751,10 @@ export namespace Prisma {
      */
     omit?: BookOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
      * Filter, which Book to fetch.
      */
     where: BookWhereUniqueInput
@@ -1624,6 +1773,10 @@ export namespace Prisma {
      */
     omit?: BookOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
      * Filter, which Book to fetch.
      */
     where: BookWhereUniqueInput
@@ -1641,6 +1794,10 @@ export namespace Prisma {
      * Omit specific fields from the Book
      */
     omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
     /**
      * Filter, which Book to fetch.
      */
@@ -1690,6 +1847,10 @@ export namespace Prisma {
      */
     omit?: BookOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
      * Filter, which Book to fetch.
      */
     where?: BookWhereInput
@@ -1738,6 +1899,10 @@ export namespace Prisma {
      */
     omit?: BookOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
      * Filter, which Books to fetch.
      */
     where?: BookWhereInput
@@ -1780,6 +1945,10 @@ export namespace Prisma {
      * Omit specific fields from the Book
      */
     omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
     /**
      * The data needed to create a Book.
      */
@@ -1828,6 +1997,10 @@ export namespace Prisma {
      * Omit specific fields from the Book
      */
     omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
     /**
      * The data needed to update a Book.
      */
@@ -1895,6 +2068,10 @@ export namespace Prisma {
      */
     omit?: BookOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
      * The filter to search for the Book to update in case it exists.
      */
     where: BookWhereUniqueInput
@@ -1921,6 +2098,10 @@ export namespace Prisma {
      */
     omit?: BookOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
      * Filter which Book to delete.
      */
     where: BookWhereUniqueInput
@@ -1941,6 +2122,54 @@ export namespace Prisma {
   }
 
   /**
+   * Book.offeredExchanges
+   */
+  export type Book$offeredExchangesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    where?: BookExchangeWhereInput
+    orderBy?: BookExchangeOrderByWithRelationInput | BookExchangeOrderByWithRelationInput[]
+    cursor?: BookExchangeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookExchangeScalarFieldEnum | BookExchangeScalarFieldEnum[]
+  }
+
+  /**
+   * Book.desiredExchanges
+   */
+  export type Book$desiredExchangesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    where?: BookExchangeWhereInput
+    orderBy?: BookExchangeOrderByWithRelationInput | BookExchangeOrderByWithRelationInput[]
+    cursor?: BookExchangeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookExchangeScalarFieldEnum | BookExchangeScalarFieldEnum[]
+  }
+
+  /**
    * Book without action
    */
   export type BookDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1952,6 +2181,1102 @@ export namespace Prisma {
      * Omit specific fields from the Book
      */
     omit?: BookOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BookExchange
+   */
+
+  export type AggregateBookExchange = {
+    _count: BookExchangeCountAggregateOutputType | null
+    _min: BookExchangeMinAggregateOutputType | null
+    _max: BookExchangeMaxAggregateOutputType | null
+  }
+
+  export type BookExchangeMinAggregateOutputType = {
+    id: string | null
+    offeredBookId: string | null
+    desiredBookId: string | null
+    exchangeOwnerPhone: string | null
+    exchangedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookExchangeMaxAggregateOutputType = {
+    id: string | null
+    offeredBookId: string | null
+    desiredBookId: string | null
+    exchangeOwnerPhone: string | null
+    exchangedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BookExchangeCountAggregateOutputType = {
+    id: number
+    offeredBookId: number
+    desiredBookId: number
+    exchangeOwnerPhone: number
+    exchangedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BookExchangeMinAggregateInputType = {
+    id?: true
+    offeredBookId?: true
+    desiredBookId?: true
+    exchangeOwnerPhone?: true
+    exchangedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookExchangeMaxAggregateInputType = {
+    id?: true
+    offeredBookId?: true
+    desiredBookId?: true
+    exchangeOwnerPhone?: true
+    exchangedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BookExchangeCountAggregateInputType = {
+    id?: true
+    offeredBookId?: true
+    desiredBookId?: true
+    exchangeOwnerPhone?: true
+    exchangedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BookExchangeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookExchange to aggregate.
+     */
+    where?: BookExchangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookExchanges to fetch.
+     */
+    orderBy?: BookExchangeOrderByWithRelationInput | BookExchangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookExchangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookExchanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookExchanges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookExchanges
+    **/
+    _count?: true | BookExchangeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookExchangeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookExchangeMaxAggregateInputType
+  }
+
+  export type GetBookExchangeAggregateType<T extends BookExchangeAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookExchange]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookExchange[P]>
+      : GetScalarType<T[P], AggregateBookExchange[P]>
+  }
+
+
+
+
+  export type BookExchangeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookExchangeWhereInput
+    orderBy?: BookExchangeOrderByWithAggregationInput | BookExchangeOrderByWithAggregationInput[]
+    by: BookExchangeScalarFieldEnum[] | BookExchangeScalarFieldEnum
+    having?: BookExchangeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookExchangeCountAggregateInputType | true
+    _min?: BookExchangeMinAggregateInputType
+    _max?: BookExchangeMaxAggregateInputType
+  }
+
+  export type BookExchangeGroupByOutputType = {
+    id: string
+    offeredBookId: string
+    desiredBookId: string
+    exchangeOwnerPhone: string
+    exchangedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: BookExchangeCountAggregateOutputType | null
+    _min: BookExchangeMinAggregateOutputType | null
+    _max: BookExchangeMaxAggregateOutputType | null
+  }
+
+  type GetBookExchangeGroupByPayload<T extends BookExchangeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookExchangeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookExchangeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookExchangeGroupByOutputType[P]>
+            : GetScalarType<T[P], BookExchangeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookExchangeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    offeredBookId?: boolean
+    desiredBookId?: boolean
+    exchangeOwnerPhone?: boolean
+    exchangedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    offeredBook?: boolean | BookDefaultArgs<ExtArgs>
+    desiredBook?: boolean | BookDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookExchange"]>
+
+  export type BookExchangeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    offeredBookId?: boolean
+    desiredBookId?: boolean
+    exchangeOwnerPhone?: boolean
+    exchangedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    offeredBook?: boolean | BookDefaultArgs<ExtArgs>
+    desiredBook?: boolean | BookDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookExchange"]>
+
+  export type BookExchangeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    offeredBookId?: boolean
+    desiredBookId?: boolean
+    exchangeOwnerPhone?: boolean
+    exchangedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    offeredBook?: boolean | BookDefaultArgs<ExtArgs>
+    desiredBook?: boolean | BookDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookExchange"]>
+
+  export type BookExchangeSelectScalar = {
+    id?: boolean
+    offeredBookId?: boolean
+    desiredBookId?: boolean
+    exchangeOwnerPhone?: boolean
+    exchangedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BookExchangeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "offeredBookId" | "desiredBookId" | "exchangeOwnerPhone" | "exchangedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["bookExchange"]>
+  export type BookExchangeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    offeredBook?: boolean | BookDefaultArgs<ExtArgs>
+    desiredBook?: boolean | BookDefaultArgs<ExtArgs>
+  }
+  export type BookExchangeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    offeredBook?: boolean | BookDefaultArgs<ExtArgs>
+    desiredBook?: boolean | BookDefaultArgs<ExtArgs>
+  }
+  export type BookExchangeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    offeredBook?: boolean | BookDefaultArgs<ExtArgs>
+    desiredBook?: boolean | BookDefaultArgs<ExtArgs>
+  }
+
+  export type $BookExchangePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookExchange"
+    objects: {
+      offeredBook: Prisma.$BookPayload<ExtArgs>
+      desiredBook: Prisma.$BookPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      offeredBookId: string
+      desiredBookId: string
+      exchangeOwnerPhone: string
+      exchangedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bookExchange"]>
+    composites: {}
+  }
+
+  type BookExchangeGetPayload<S extends boolean | null | undefined | BookExchangeDefaultArgs> = $Result.GetResult<Prisma.$BookExchangePayload, S>
+
+  type BookExchangeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BookExchangeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BookExchangeCountAggregateInputType | true
+    }
+
+  export interface BookExchangeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookExchange'], meta: { name: 'BookExchange' } }
+    /**
+     * Find zero or one BookExchange that matches the filter.
+     * @param {BookExchangeFindUniqueArgs} args - Arguments to find a BookExchange
+     * @example
+     * // Get one BookExchange
+     * const bookExchange = await prisma.bookExchange.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookExchangeFindUniqueArgs>(args: SelectSubset<T, BookExchangeFindUniqueArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BookExchange that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BookExchangeFindUniqueOrThrowArgs} args - Arguments to find a BookExchange
+     * @example
+     * // Get one BookExchange
+     * const bookExchange = await prisma.bookExchange.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookExchangeFindUniqueOrThrowArgs>(args: SelectSubset<T, BookExchangeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookExchange that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookExchangeFindFirstArgs} args - Arguments to find a BookExchange
+     * @example
+     * // Get one BookExchange
+     * const bookExchange = await prisma.bookExchange.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookExchangeFindFirstArgs>(args?: SelectSubset<T, BookExchangeFindFirstArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BookExchange that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookExchangeFindFirstOrThrowArgs} args - Arguments to find a BookExchange
+     * @example
+     * // Get one BookExchange
+     * const bookExchange = await prisma.bookExchange.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookExchangeFindFirstOrThrowArgs>(args?: SelectSubset<T, BookExchangeFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BookExchanges that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookExchangeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookExchanges
+     * const bookExchanges = await prisma.bookExchange.findMany()
+     * 
+     * // Get first 10 BookExchanges
+     * const bookExchanges = await prisma.bookExchange.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookExchangeWithIdOnly = await prisma.bookExchange.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookExchangeFindManyArgs>(args?: SelectSubset<T, BookExchangeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BookExchange.
+     * @param {BookExchangeCreateArgs} args - Arguments to create a BookExchange.
+     * @example
+     * // Create one BookExchange
+     * const BookExchange = await prisma.bookExchange.create({
+     *   data: {
+     *     // ... data to create a BookExchange
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookExchangeCreateArgs>(args: SelectSubset<T, BookExchangeCreateArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BookExchanges.
+     * @param {BookExchangeCreateManyArgs} args - Arguments to create many BookExchanges.
+     * @example
+     * // Create many BookExchanges
+     * const bookExchange = await prisma.bookExchange.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookExchangeCreateManyArgs>(args?: SelectSubset<T, BookExchangeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookExchanges and returns the data saved in the database.
+     * @param {BookExchangeCreateManyAndReturnArgs} args - Arguments to create many BookExchanges.
+     * @example
+     * // Create many BookExchanges
+     * const bookExchange = await prisma.bookExchange.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookExchanges and only return the `id`
+     * const bookExchangeWithIdOnly = await prisma.bookExchange.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookExchangeCreateManyAndReturnArgs>(args?: SelectSubset<T, BookExchangeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BookExchange.
+     * @param {BookExchangeDeleteArgs} args - Arguments to delete one BookExchange.
+     * @example
+     * // Delete one BookExchange
+     * const BookExchange = await prisma.bookExchange.delete({
+     *   where: {
+     *     // ... filter to delete one BookExchange
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookExchangeDeleteArgs>(args: SelectSubset<T, BookExchangeDeleteArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BookExchange.
+     * @param {BookExchangeUpdateArgs} args - Arguments to update one BookExchange.
+     * @example
+     * // Update one BookExchange
+     * const bookExchange = await prisma.bookExchange.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookExchangeUpdateArgs>(args: SelectSubset<T, BookExchangeUpdateArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BookExchanges.
+     * @param {BookExchangeDeleteManyArgs} args - Arguments to filter BookExchanges to delete.
+     * @example
+     * // Delete a few BookExchanges
+     * const { count } = await prisma.bookExchange.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookExchangeDeleteManyArgs>(args?: SelectSubset<T, BookExchangeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookExchanges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookExchangeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookExchanges
+     * const bookExchange = await prisma.bookExchange.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookExchangeUpdateManyArgs>(args: SelectSubset<T, BookExchangeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookExchanges and returns the data updated in the database.
+     * @param {BookExchangeUpdateManyAndReturnArgs} args - Arguments to update many BookExchanges.
+     * @example
+     * // Update many BookExchanges
+     * const bookExchange = await prisma.bookExchange.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BookExchanges and only return the `id`
+     * const bookExchangeWithIdOnly = await prisma.bookExchange.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BookExchangeUpdateManyAndReturnArgs>(args: SelectSubset<T, BookExchangeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BookExchange.
+     * @param {BookExchangeUpsertArgs} args - Arguments to update or create a BookExchange.
+     * @example
+     * // Update or create a BookExchange
+     * const bookExchange = await prisma.bookExchange.upsert({
+     *   create: {
+     *     // ... data to create a BookExchange
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookExchange we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookExchangeUpsertArgs>(args: SelectSubset<T, BookExchangeUpsertArgs<ExtArgs>>): Prisma__BookExchangeClient<$Result.GetResult<Prisma.$BookExchangePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BookExchanges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookExchangeCountArgs} args - Arguments to filter BookExchanges to count.
+     * @example
+     * // Count the number of BookExchanges
+     * const count = await prisma.bookExchange.count({
+     *   where: {
+     *     // ... the filter for the BookExchanges we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookExchangeCountArgs>(
+      args?: Subset<T, BookExchangeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookExchangeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookExchange.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookExchangeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookExchangeAggregateArgs>(args: Subset<T, BookExchangeAggregateArgs>): Prisma.PrismaPromise<GetBookExchangeAggregateType<T>>
+
+    /**
+     * Group by BookExchange.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookExchangeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookExchangeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookExchangeGroupByArgs['orderBy'] }
+        : { orderBy?: BookExchangeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookExchangeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookExchangeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookExchange model
+   */
+  readonly fields: BookExchangeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookExchange.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookExchangeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    offeredBook<T extends BookDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BookDefaultArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    desiredBook<T extends BookDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BookDefaultArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookExchange model
+   */
+  interface BookExchangeFieldRefs {
+    readonly id: FieldRef<"BookExchange", 'String'>
+    readonly offeredBookId: FieldRef<"BookExchange", 'String'>
+    readonly desiredBookId: FieldRef<"BookExchange", 'String'>
+    readonly exchangeOwnerPhone: FieldRef<"BookExchange", 'String'>
+    readonly exchangedAt: FieldRef<"BookExchange", 'DateTime'>
+    readonly createdAt: FieldRef<"BookExchange", 'DateTime'>
+    readonly updatedAt: FieldRef<"BookExchange", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookExchange findUnique
+   */
+  export type BookExchangeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * Filter, which BookExchange to fetch.
+     */
+    where: BookExchangeWhereUniqueInput
+  }
+
+  /**
+   * BookExchange findUniqueOrThrow
+   */
+  export type BookExchangeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * Filter, which BookExchange to fetch.
+     */
+    where: BookExchangeWhereUniqueInput
+  }
+
+  /**
+   * BookExchange findFirst
+   */
+  export type BookExchangeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * Filter, which BookExchange to fetch.
+     */
+    where?: BookExchangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookExchanges to fetch.
+     */
+    orderBy?: BookExchangeOrderByWithRelationInput | BookExchangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookExchanges.
+     */
+    cursor?: BookExchangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookExchanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookExchanges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookExchanges.
+     */
+    distinct?: BookExchangeScalarFieldEnum | BookExchangeScalarFieldEnum[]
+  }
+
+  /**
+   * BookExchange findFirstOrThrow
+   */
+  export type BookExchangeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * Filter, which BookExchange to fetch.
+     */
+    where?: BookExchangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookExchanges to fetch.
+     */
+    orderBy?: BookExchangeOrderByWithRelationInput | BookExchangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookExchanges.
+     */
+    cursor?: BookExchangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookExchanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookExchanges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookExchanges.
+     */
+    distinct?: BookExchangeScalarFieldEnum | BookExchangeScalarFieldEnum[]
+  }
+
+  /**
+   * BookExchange findMany
+   */
+  export type BookExchangeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * Filter, which BookExchanges to fetch.
+     */
+    where?: BookExchangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookExchanges to fetch.
+     */
+    orderBy?: BookExchangeOrderByWithRelationInput | BookExchangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookExchanges.
+     */
+    cursor?: BookExchangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookExchanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookExchanges.
+     */
+    skip?: number
+    distinct?: BookExchangeScalarFieldEnum | BookExchangeScalarFieldEnum[]
+  }
+
+  /**
+   * BookExchange create
+   */
+  export type BookExchangeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BookExchange.
+     */
+    data: XOR<BookExchangeCreateInput, BookExchangeUncheckedCreateInput>
+  }
+
+  /**
+   * BookExchange createMany
+   */
+  export type BookExchangeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookExchanges.
+     */
+    data: BookExchangeCreateManyInput | BookExchangeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookExchange createManyAndReturn
+   */
+  export type BookExchangeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * The data used to create many BookExchanges.
+     */
+    data: BookExchangeCreateManyInput | BookExchangeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BookExchange update
+   */
+  export type BookExchangeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BookExchange.
+     */
+    data: XOR<BookExchangeUpdateInput, BookExchangeUncheckedUpdateInput>
+    /**
+     * Choose, which BookExchange to update.
+     */
+    where: BookExchangeWhereUniqueInput
+  }
+
+  /**
+   * BookExchange updateMany
+   */
+  export type BookExchangeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookExchanges.
+     */
+    data: XOR<BookExchangeUpdateManyMutationInput, BookExchangeUncheckedUpdateManyInput>
+    /**
+     * Filter which BookExchanges to update
+     */
+    where?: BookExchangeWhereInput
+    /**
+     * Limit how many BookExchanges to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookExchange updateManyAndReturn
+   */
+  export type BookExchangeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * The data used to update BookExchanges.
+     */
+    data: XOR<BookExchangeUpdateManyMutationInput, BookExchangeUncheckedUpdateManyInput>
+    /**
+     * Filter which BookExchanges to update
+     */
+    where?: BookExchangeWhereInput
+    /**
+     * Limit how many BookExchanges to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BookExchange upsert
+   */
+  export type BookExchangeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BookExchange to update in case it exists.
+     */
+    where: BookExchangeWhereUniqueInput
+    /**
+     * In case the BookExchange found by the `where` argument doesn't exist, create a new BookExchange with this data.
+     */
+    create: XOR<BookExchangeCreateInput, BookExchangeUncheckedCreateInput>
+    /**
+     * In case the BookExchange was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookExchangeUpdateInput, BookExchangeUncheckedUpdateInput>
+  }
+
+  /**
+   * BookExchange delete
+   */
+  export type BookExchangeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
+    /**
+     * Filter which BookExchange to delete.
+     */
+    where: BookExchangeWhereUniqueInput
+  }
+
+  /**
+   * BookExchange deleteMany
+   */
+  export type BookExchangeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookExchanges to delete
+     */
+    where?: BookExchangeWhereInput
+    /**
+     * Limit how many BookExchanges to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BookExchange without action
+   */
+  export type BookExchangeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookExchange
+     */
+    select?: BookExchangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BookExchange
+     */
+    omit?: BookExchangeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookExchangeInclude<ExtArgs> | null
   }
 
 
@@ -1985,6 +3310,19 @@ export namespace Prisma {
   };
 
   export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
+  export const BookExchangeScalarFieldEnum: {
+    id: 'id',
+    offeredBookId: 'offeredBookId',
+    desiredBookId: 'desiredBookId',
+    exchangeOwnerPhone: 'exchangeOwnerPhone',
+    exchangedAt: 'exchangedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BookExchangeScalarFieldEnum = (typeof BookExchangeScalarFieldEnum)[keyof typeof BookExchangeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2084,6 +3422,8 @@ export namespace Prisma {
     publishedAt?: DateTimeFilter<"Book"> | Date | string
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
+    offeredExchanges?: BookExchangeListRelationFilter
+    desiredExchanges?: BookExchangeListRelationFilter
   }
 
   export type BookOrderByWithRelationInput = {
@@ -2099,6 +3439,8 @@ export namespace Prisma {
     publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    offeredExchanges?: BookExchangeOrderByRelationAggregateInput
+    desiredExchanges?: BookExchangeOrderByRelationAggregateInput
   }
 
   export type BookWhereUniqueInput = Prisma.AtLeast<{
@@ -2117,6 +3459,8 @@ export namespace Prisma {
     publishedAt?: DateTimeFilter<"Book"> | Date | string
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
+    offeredExchanges?: BookExchangeListRelationFilter
+    desiredExchanges?: BookExchangeListRelationFilter
   }, "id">
 
   export type BookOrderByWithAggregationInput = {
@@ -2155,6 +3499,74 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
   }
 
+  export type BookExchangeWhereInput = {
+    AND?: BookExchangeWhereInput | BookExchangeWhereInput[]
+    OR?: BookExchangeWhereInput[]
+    NOT?: BookExchangeWhereInput | BookExchangeWhereInput[]
+    id?: UuidFilter<"BookExchange"> | string
+    offeredBookId?: UuidFilter<"BookExchange"> | string
+    desiredBookId?: UuidFilter<"BookExchange"> | string
+    exchangeOwnerPhone?: StringFilter<"BookExchange"> | string
+    exchangedAt?: DateTimeNullableFilter<"BookExchange"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookExchange"> | Date | string
+    updatedAt?: DateTimeFilter<"BookExchange"> | Date | string
+    offeredBook?: XOR<BookScalarRelationFilter, BookWhereInput>
+    desiredBook?: XOR<BookScalarRelationFilter, BookWhereInput>
+  }
+
+  export type BookExchangeOrderByWithRelationInput = {
+    id?: SortOrder
+    offeredBookId?: SortOrder
+    desiredBookId?: SortOrder
+    exchangeOwnerPhone?: SortOrder
+    exchangedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    offeredBook?: BookOrderByWithRelationInput
+    desiredBook?: BookOrderByWithRelationInput
+  }
+
+  export type BookExchangeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookExchangeWhereInput | BookExchangeWhereInput[]
+    OR?: BookExchangeWhereInput[]
+    NOT?: BookExchangeWhereInput | BookExchangeWhereInput[]
+    offeredBookId?: UuidFilter<"BookExchange"> | string
+    desiredBookId?: UuidFilter<"BookExchange"> | string
+    exchangeOwnerPhone?: StringFilter<"BookExchange"> | string
+    exchangedAt?: DateTimeNullableFilter<"BookExchange"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookExchange"> | Date | string
+    updatedAt?: DateTimeFilter<"BookExchange"> | Date | string
+    offeredBook?: XOR<BookScalarRelationFilter, BookWhereInput>
+    desiredBook?: XOR<BookScalarRelationFilter, BookWhereInput>
+  }, "id">
+
+  export type BookExchangeOrderByWithAggregationInput = {
+    id?: SortOrder
+    offeredBookId?: SortOrder
+    desiredBookId?: SortOrder
+    exchangeOwnerPhone?: SortOrder
+    exchangedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BookExchangeCountOrderByAggregateInput
+    _max?: BookExchangeMaxOrderByAggregateInput
+    _min?: BookExchangeMinOrderByAggregateInput
+  }
+
+  export type BookExchangeScalarWhereWithAggregatesInput = {
+    AND?: BookExchangeScalarWhereWithAggregatesInput | BookExchangeScalarWhereWithAggregatesInput[]
+    OR?: BookExchangeScalarWhereWithAggregatesInput[]
+    NOT?: BookExchangeScalarWhereWithAggregatesInput | BookExchangeScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"BookExchange"> | string
+    offeredBookId?: UuidWithAggregatesFilter<"BookExchange"> | string
+    desiredBookId?: UuidWithAggregatesFilter<"BookExchange"> | string
+    exchangeOwnerPhone?: StringWithAggregatesFilter<"BookExchange"> | string
+    exchangedAt?: DateTimeNullableWithAggregatesFilter<"BookExchange"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"BookExchange"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BookExchange"> | Date | string
+  }
+
   export type BookCreateInput = {
     id?: string
     title: string
@@ -2168,6 +3580,8 @@ export namespace Prisma {
     publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    offeredExchanges?: BookExchangeCreateNestedManyWithoutOfferedBookInput
+    desiredExchanges?: BookExchangeCreateNestedManyWithoutDesiredBookInput
   }
 
   export type BookUncheckedCreateInput = {
@@ -2183,6 +3597,8 @@ export namespace Prisma {
     publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    offeredExchanges?: BookExchangeUncheckedCreateNestedManyWithoutOfferedBookInput
+    desiredExchanges?: BookExchangeUncheckedCreateNestedManyWithoutDesiredBookInput
   }
 
   export type BookUpdateInput = {
@@ -2198,6 +3614,8 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    offeredExchanges?: BookExchangeUpdateManyWithoutOfferedBookNestedInput
+    desiredExchanges?: BookExchangeUpdateManyWithoutDesiredBookNestedInput
   }
 
   export type BookUncheckedUpdateInput = {
@@ -2213,6 +3631,8 @@ export namespace Prisma {
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    offeredExchanges?: BookExchangeUncheckedUpdateManyWithoutOfferedBookNestedInput
+    desiredExchanges?: BookExchangeUncheckedUpdateManyWithoutDesiredBookNestedInput
   }
 
   export type BookCreateManyInput = {
@@ -2256,6 +3676,74 @@ export namespace Prisma {
     readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     publisher?: StringFieldUpdateOperationsInput | string
     publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookExchangeCreateInput = {
+    id?: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    offeredBook: BookCreateNestedOneWithoutOfferedExchangesInput
+    desiredBook: BookCreateNestedOneWithoutDesiredExchangesInput
+  }
+
+  export type BookExchangeUncheckedCreateInput = {
+    id?: string
+    offeredBookId: string
+    desiredBookId: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookExchangeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    offeredBook?: BookUpdateOneRequiredWithoutOfferedExchangesNestedInput
+    desiredBook?: BookUpdateOneRequiredWithoutDesiredExchangesNestedInput
+  }
+
+  export type BookExchangeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    offeredBookId?: StringFieldUpdateOperationsInput | string
+    desiredBookId?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookExchangeCreateManyInput = {
+    id?: string
+    offeredBookId: string
+    desiredBookId: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookExchangeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookExchangeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    offeredBookId?: StringFieldUpdateOperationsInput | string
+    desiredBookId?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2329,9 +3817,19 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type BookExchangeListRelationFilter = {
+    every?: BookExchangeWhereInput
+    some?: BookExchangeWhereInput
+    none?: BookExchangeWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type BookExchangeOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type BookCountOrderByAggregateInput = {
@@ -2466,6 +3964,69 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type BookScalarRelationFilter = {
+    is?: BookWhereInput
+    isNot?: BookWhereInput
+  }
+
+  export type BookExchangeCountOrderByAggregateInput = {
+    id?: SortOrder
+    offeredBookId?: SortOrder
+    desiredBookId?: SortOrder
+    exchangeOwnerPhone?: SortOrder
+    exchangedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookExchangeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    offeredBookId?: SortOrder
+    desiredBookId?: SortOrder
+    exchangeOwnerPhone?: SortOrder
+    exchangedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookExchangeMinOrderByAggregateInput = {
+    id?: SortOrder
+    offeredBookId?: SortOrder
+    desiredBookId?: SortOrder
+    exchangeOwnerPhone?: SortOrder
+    exchangedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BookExchangeCreateNestedManyWithoutOfferedBookInput = {
+    create?: XOR<BookExchangeCreateWithoutOfferedBookInput, BookExchangeUncheckedCreateWithoutOfferedBookInput> | BookExchangeCreateWithoutOfferedBookInput[] | BookExchangeUncheckedCreateWithoutOfferedBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutOfferedBookInput | BookExchangeCreateOrConnectWithoutOfferedBookInput[]
+    createMany?: BookExchangeCreateManyOfferedBookInputEnvelope
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+  }
+
+  export type BookExchangeCreateNestedManyWithoutDesiredBookInput = {
+    create?: XOR<BookExchangeCreateWithoutDesiredBookInput, BookExchangeUncheckedCreateWithoutDesiredBookInput> | BookExchangeCreateWithoutDesiredBookInput[] | BookExchangeUncheckedCreateWithoutDesiredBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutDesiredBookInput | BookExchangeCreateOrConnectWithoutDesiredBookInput[]
+    createMany?: BookExchangeCreateManyDesiredBookInputEnvelope
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+  }
+
+  export type BookExchangeUncheckedCreateNestedManyWithoutOfferedBookInput = {
+    create?: XOR<BookExchangeCreateWithoutOfferedBookInput, BookExchangeUncheckedCreateWithoutOfferedBookInput> | BookExchangeCreateWithoutOfferedBookInput[] | BookExchangeUncheckedCreateWithoutOfferedBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutOfferedBookInput | BookExchangeCreateOrConnectWithoutOfferedBookInput[]
+    createMany?: BookExchangeCreateManyOfferedBookInputEnvelope
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+  }
+
+  export type BookExchangeUncheckedCreateNestedManyWithoutDesiredBookInput = {
+    create?: XOR<BookExchangeCreateWithoutDesiredBookInput, BookExchangeUncheckedCreateWithoutDesiredBookInput> | BookExchangeCreateWithoutDesiredBookInput[] | BookExchangeUncheckedCreateWithoutDesiredBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutDesiredBookInput | BookExchangeCreateOrConnectWithoutDesiredBookInput[]
+    createMany?: BookExchangeCreateManyDesiredBookInputEnvelope
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2484,6 +4045,90 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type BookExchangeUpdateManyWithoutOfferedBookNestedInput = {
+    create?: XOR<BookExchangeCreateWithoutOfferedBookInput, BookExchangeUncheckedCreateWithoutOfferedBookInput> | BookExchangeCreateWithoutOfferedBookInput[] | BookExchangeUncheckedCreateWithoutOfferedBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutOfferedBookInput | BookExchangeCreateOrConnectWithoutOfferedBookInput[]
+    upsert?: BookExchangeUpsertWithWhereUniqueWithoutOfferedBookInput | BookExchangeUpsertWithWhereUniqueWithoutOfferedBookInput[]
+    createMany?: BookExchangeCreateManyOfferedBookInputEnvelope
+    set?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    disconnect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    delete?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    update?: BookExchangeUpdateWithWhereUniqueWithoutOfferedBookInput | BookExchangeUpdateWithWhereUniqueWithoutOfferedBookInput[]
+    updateMany?: BookExchangeUpdateManyWithWhereWithoutOfferedBookInput | BookExchangeUpdateManyWithWhereWithoutOfferedBookInput[]
+    deleteMany?: BookExchangeScalarWhereInput | BookExchangeScalarWhereInput[]
+  }
+
+  export type BookExchangeUpdateManyWithoutDesiredBookNestedInput = {
+    create?: XOR<BookExchangeCreateWithoutDesiredBookInput, BookExchangeUncheckedCreateWithoutDesiredBookInput> | BookExchangeCreateWithoutDesiredBookInput[] | BookExchangeUncheckedCreateWithoutDesiredBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutDesiredBookInput | BookExchangeCreateOrConnectWithoutDesiredBookInput[]
+    upsert?: BookExchangeUpsertWithWhereUniqueWithoutDesiredBookInput | BookExchangeUpsertWithWhereUniqueWithoutDesiredBookInput[]
+    createMany?: BookExchangeCreateManyDesiredBookInputEnvelope
+    set?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    disconnect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    delete?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    update?: BookExchangeUpdateWithWhereUniqueWithoutDesiredBookInput | BookExchangeUpdateWithWhereUniqueWithoutDesiredBookInput[]
+    updateMany?: BookExchangeUpdateManyWithWhereWithoutDesiredBookInput | BookExchangeUpdateManyWithWhereWithoutDesiredBookInput[]
+    deleteMany?: BookExchangeScalarWhereInput | BookExchangeScalarWhereInput[]
+  }
+
+  export type BookExchangeUncheckedUpdateManyWithoutOfferedBookNestedInput = {
+    create?: XOR<BookExchangeCreateWithoutOfferedBookInput, BookExchangeUncheckedCreateWithoutOfferedBookInput> | BookExchangeCreateWithoutOfferedBookInput[] | BookExchangeUncheckedCreateWithoutOfferedBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutOfferedBookInput | BookExchangeCreateOrConnectWithoutOfferedBookInput[]
+    upsert?: BookExchangeUpsertWithWhereUniqueWithoutOfferedBookInput | BookExchangeUpsertWithWhereUniqueWithoutOfferedBookInput[]
+    createMany?: BookExchangeCreateManyOfferedBookInputEnvelope
+    set?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    disconnect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    delete?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    update?: BookExchangeUpdateWithWhereUniqueWithoutOfferedBookInput | BookExchangeUpdateWithWhereUniqueWithoutOfferedBookInput[]
+    updateMany?: BookExchangeUpdateManyWithWhereWithoutOfferedBookInput | BookExchangeUpdateManyWithWhereWithoutOfferedBookInput[]
+    deleteMany?: BookExchangeScalarWhereInput | BookExchangeScalarWhereInput[]
+  }
+
+  export type BookExchangeUncheckedUpdateManyWithoutDesiredBookNestedInput = {
+    create?: XOR<BookExchangeCreateWithoutDesiredBookInput, BookExchangeUncheckedCreateWithoutDesiredBookInput> | BookExchangeCreateWithoutDesiredBookInput[] | BookExchangeUncheckedCreateWithoutDesiredBookInput[]
+    connectOrCreate?: BookExchangeCreateOrConnectWithoutDesiredBookInput | BookExchangeCreateOrConnectWithoutDesiredBookInput[]
+    upsert?: BookExchangeUpsertWithWhereUniqueWithoutDesiredBookInput | BookExchangeUpsertWithWhereUniqueWithoutDesiredBookInput[]
+    createMany?: BookExchangeCreateManyDesiredBookInputEnvelope
+    set?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    disconnect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    delete?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    connect?: BookExchangeWhereUniqueInput | BookExchangeWhereUniqueInput[]
+    update?: BookExchangeUpdateWithWhereUniqueWithoutDesiredBookInput | BookExchangeUpdateWithWhereUniqueWithoutDesiredBookInput[]
+    updateMany?: BookExchangeUpdateManyWithWhereWithoutDesiredBookInput | BookExchangeUpdateManyWithWhereWithoutDesiredBookInput[]
+    deleteMany?: BookExchangeScalarWhereInput | BookExchangeScalarWhereInput[]
+  }
+
+  export type BookCreateNestedOneWithoutOfferedExchangesInput = {
+    create?: XOR<BookCreateWithoutOfferedExchangesInput, BookUncheckedCreateWithoutOfferedExchangesInput>
+    connectOrCreate?: BookCreateOrConnectWithoutOfferedExchangesInput
+    connect?: BookWhereUniqueInput
+  }
+
+  export type BookCreateNestedOneWithoutDesiredExchangesInput = {
+    create?: XOR<BookCreateWithoutDesiredExchangesInput, BookUncheckedCreateWithoutDesiredExchangesInput>
+    connectOrCreate?: BookCreateOrConnectWithoutDesiredExchangesInput
+    connect?: BookWhereUniqueInput
+  }
+
+  export type BookUpdateOneRequiredWithoutOfferedExchangesNestedInput = {
+    create?: XOR<BookCreateWithoutOfferedExchangesInput, BookUncheckedCreateWithoutOfferedExchangesInput>
+    connectOrCreate?: BookCreateOrConnectWithoutOfferedExchangesInput
+    upsert?: BookUpsertWithoutOfferedExchangesInput
+    connect?: BookWhereUniqueInput
+    update?: XOR<XOR<BookUpdateToOneWithWhereWithoutOfferedExchangesInput, BookUpdateWithoutOfferedExchangesInput>, BookUncheckedUpdateWithoutOfferedExchangesInput>
+  }
+
+  export type BookUpdateOneRequiredWithoutDesiredExchangesNestedInput = {
+    create?: XOR<BookCreateWithoutDesiredExchangesInput, BookUncheckedCreateWithoutDesiredExchangesInput>
+    connectOrCreate?: BookCreateOrConnectWithoutDesiredExchangesInput
+    upsert?: BookUpsertWithoutDesiredExchangesInput
+    connect?: BookWhereUniqueInput
+    update?: XOR<XOR<BookUpdateToOneWithWhereWithoutDesiredExchangesInput, BookUpdateWithoutDesiredExchangesInput>, BookUncheckedUpdateWithoutDesiredExchangesInput>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -2656,6 +4301,339 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BookExchangeCreateWithoutOfferedBookInput = {
+    id?: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    desiredBook: BookCreateNestedOneWithoutDesiredExchangesInput
+  }
+
+  export type BookExchangeUncheckedCreateWithoutOfferedBookInput = {
+    id?: string
+    desiredBookId: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookExchangeCreateOrConnectWithoutOfferedBookInput = {
+    where: BookExchangeWhereUniqueInput
+    create: XOR<BookExchangeCreateWithoutOfferedBookInput, BookExchangeUncheckedCreateWithoutOfferedBookInput>
+  }
+
+  export type BookExchangeCreateManyOfferedBookInputEnvelope = {
+    data: BookExchangeCreateManyOfferedBookInput | BookExchangeCreateManyOfferedBookInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BookExchangeCreateWithoutDesiredBookInput = {
+    id?: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    offeredBook: BookCreateNestedOneWithoutOfferedExchangesInput
+  }
+
+  export type BookExchangeUncheckedCreateWithoutDesiredBookInput = {
+    id?: string
+    offeredBookId: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookExchangeCreateOrConnectWithoutDesiredBookInput = {
+    where: BookExchangeWhereUniqueInput
+    create: XOR<BookExchangeCreateWithoutDesiredBookInput, BookExchangeUncheckedCreateWithoutDesiredBookInput>
+  }
+
+  export type BookExchangeCreateManyDesiredBookInputEnvelope = {
+    data: BookExchangeCreateManyDesiredBookInput | BookExchangeCreateManyDesiredBookInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BookExchangeUpsertWithWhereUniqueWithoutOfferedBookInput = {
+    where: BookExchangeWhereUniqueInput
+    update: XOR<BookExchangeUpdateWithoutOfferedBookInput, BookExchangeUncheckedUpdateWithoutOfferedBookInput>
+    create: XOR<BookExchangeCreateWithoutOfferedBookInput, BookExchangeUncheckedCreateWithoutOfferedBookInput>
+  }
+
+  export type BookExchangeUpdateWithWhereUniqueWithoutOfferedBookInput = {
+    where: BookExchangeWhereUniqueInput
+    data: XOR<BookExchangeUpdateWithoutOfferedBookInput, BookExchangeUncheckedUpdateWithoutOfferedBookInput>
+  }
+
+  export type BookExchangeUpdateManyWithWhereWithoutOfferedBookInput = {
+    where: BookExchangeScalarWhereInput
+    data: XOR<BookExchangeUpdateManyMutationInput, BookExchangeUncheckedUpdateManyWithoutOfferedBookInput>
+  }
+
+  export type BookExchangeScalarWhereInput = {
+    AND?: BookExchangeScalarWhereInput | BookExchangeScalarWhereInput[]
+    OR?: BookExchangeScalarWhereInput[]
+    NOT?: BookExchangeScalarWhereInput | BookExchangeScalarWhereInput[]
+    id?: UuidFilter<"BookExchange"> | string
+    offeredBookId?: UuidFilter<"BookExchange"> | string
+    desiredBookId?: UuidFilter<"BookExchange"> | string
+    exchangeOwnerPhone?: StringFilter<"BookExchange"> | string
+    exchangedAt?: DateTimeNullableFilter<"BookExchange"> | Date | string | null
+    createdAt?: DateTimeFilter<"BookExchange"> | Date | string
+    updatedAt?: DateTimeFilter<"BookExchange"> | Date | string
+  }
+
+  export type BookExchangeUpsertWithWhereUniqueWithoutDesiredBookInput = {
+    where: BookExchangeWhereUniqueInput
+    update: XOR<BookExchangeUpdateWithoutDesiredBookInput, BookExchangeUncheckedUpdateWithoutDesiredBookInput>
+    create: XOR<BookExchangeCreateWithoutDesiredBookInput, BookExchangeUncheckedCreateWithoutDesiredBookInput>
+  }
+
+  export type BookExchangeUpdateWithWhereUniqueWithoutDesiredBookInput = {
+    where: BookExchangeWhereUniqueInput
+    data: XOR<BookExchangeUpdateWithoutDesiredBookInput, BookExchangeUncheckedUpdateWithoutDesiredBookInput>
+  }
+
+  export type BookExchangeUpdateManyWithWhereWithoutDesiredBookInput = {
+    where: BookExchangeScalarWhereInput
+    data: XOR<BookExchangeUpdateManyMutationInput, BookExchangeUncheckedUpdateManyWithoutDesiredBookInput>
+  }
+
+  export type BookCreateWithoutOfferedExchangesInput = {
+    id?: string
+    title: string
+    author: string
+    summary: string
+    genre: string
+    cover?: string | null
+    readed?: boolean
+    readedAt?: Date | string | null
+    publisher: string
+    publishedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    desiredExchanges?: BookExchangeCreateNestedManyWithoutDesiredBookInput
+  }
+
+  export type BookUncheckedCreateWithoutOfferedExchangesInput = {
+    id?: string
+    title: string
+    author: string
+    summary: string
+    genre: string
+    cover?: string | null
+    readed?: boolean
+    readedAt?: Date | string | null
+    publisher: string
+    publishedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    desiredExchanges?: BookExchangeUncheckedCreateNestedManyWithoutDesiredBookInput
+  }
+
+  export type BookCreateOrConnectWithoutOfferedExchangesInput = {
+    where: BookWhereUniqueInput
+    create: XOR<BookCreateWithoutOfferedExchangesInput, BookUncheckedCreateWithoutOfferedExchangesInput>
+  }
+
+  export type BookCreateWithoutDesiredExchangesInput = {
+    id?: string
+    title: string
+    author: string
+    summary: string
+    genre: string
+    cover?: string | null
+    readed?: boolean
+    readedAt?: Date | string | null
+    publisher: string
+    publishedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    offeredExchanges?: BookExchangeCreateNestedManyWithoutOfferedBookInput
+  }
+
+  export type BookUncheckedCreateWithoutDesiredExchangesInput = {
+    id?: string
+    title: string
+    author: string
+    summary: string
+    genre: string
+    cover?: string | null
+    readed?: boolean
+    readedAt?: Date | string | null
+    publisher: string
+    publishedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    offeredExchanges?: BookExchangeUncheckedCreateNestedManyWithoutOfferedBookInput
+  }
+
+  export type BookCreateOrConnectWithoutDesiredExchangesInput = {
+    where: BookWhereUniqueInput
+    create: XOR<BookCreateWithoutDesiredExchangesInput, BookUncheckedCreateWithoutDesiredExchangesInput>
+  }
+
+  export type BookUpsertWithoutOfferedExchangesInput = {
+    update: XOR<BookUpdateWithoutOfferedExchangesInput, BookUncheckedUpdateWithoutOfferedExchangesInput>
+    create: XOR<BookCreateWithoutOfferedExchangesInput, BookUncheckedCreateWithoutOfferedExchangesInput>
+    where?: BookWhereInput
+  }
+
+  export type BookUpdateToOneWithWhereWithoutOfferedExchangesInput = {
+    where?: BookWhereInput
+    data: XOR<BookUpdateWithoutOfferedExchangesInput, BookUncheckedUpdateWithoutOfferedExchangesInput>
+  }
+
+  export type BookUpdateWithoutOfferedExchangesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    genre?: StringFieldUpdateOperationsInput | string
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
+    readed?: BoolFieldUpdateOperationsInput | boolean
+    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publisher?: StringFieldUpdateOperationsInput | string
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    desiredExchanges?: BookExchangeUpdateManyWithoutDesiredBookNestedInput
+  }
+
+  export type BookUncheckedUpdateWithoutOfferedExchangesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    genre?: StringFieldUpdateOperationsInput | string
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
+    readed?: BoolFieldUpdateOperationsInput | boolean
+    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publisher?: StringFieldUpdateOperationsInput | string
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    desiredExchanges?: BookExchangeUncheckedUpdateManyWithoutDesiredBookNestedInput
+  }
+
+  export type BookUpsertWithoutDesiredExchangesInput = {
+    update: XOR<BookUpdateWithoutDesiredExchangesInput, BookUncheckedUpdateWithoutDesiredExchangesInput>
+    create: XOR<BookCreateWithoutDesiredExchangesInput, BookUncheckedCreateWithoutDesiredExchangesInput>
+    where?: BookWhereInput
+  }
+
+  export type BookUpdateToOneWithWhereWithoutDesiredExchangesInput = {
+    where?: BookWhereInput
+    data: XOR<BookUpdateWithoutDesiredExchangesInput, BookUncheckedUpdateWithoutDesiredExchangesInput>
+  }
+
+  export type BookUpdateWithoutDesiredExchangesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    genre?: StringFieldUpdateOperationsInput | string
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
+    readed?: BoolFieldUpdateOperationsInput | boolean
+    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publisher?: StringFieldUpdateOperationsInput | string
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    offeredExchanges?: BookExchangeUpdateManyWithoutOfferedBookNestedInput
+  }
+
+  export type BookUncheckedUpdateWithoutDesiredExchangesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    genre?: StringFieldUpdateOperationsInput | string
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
+    readed?: BoolFieldUpdateOperationsInput | boolean
+    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publisher?: StringFieldUpdateOperationsInput | string
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    offeredExchanges?: BookExchangeUncheckedUpdateManyWithoutOfferedBookNestedInput
+  }
+
+  export type BookExchangeCreateManyOfferedBookInput = {
+    id?: string
+    desiredBookId: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookExchangeCreateManyDesiredBookInput = {
+    id?: string
+    offeredBookId: string
+    exchangeOwnerPhone: string
+    exchangedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BookExchangeUpdateWithoutOfferedBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    desiredBook?: BookUpdateOneRequiredWithoutDesiredExchangesNestedInput
+  }
+
+  export type BookExchangeUncheckedUpdateWithoutOfferedBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    desiredBookId?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookExchangeUncheckedUpdateManyWithoutOfferedBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    desiredBookId?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookExchangeUpdateWithoutDesiredBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    offeredBook?: BookUpdateOneRequiredWithoutOfferedExchangesNestedInput
+  }
+
+  export type BookExchangeUncheckedUpdateWithoutDesiredBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    offeredBookId?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookExchangeUncheckedUpdateManyWithoutDesiredBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    offeredBookId?: StringFieldUpdateOperationsInput | string
+    exchangeOwnerPhone?: StringFieldUpdateOperationsInput | string
+    exchangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
