@@ -1,4 +1,4 @@
-import { DomainError } from "src/shared/domain/error/domain.error";
+import { DomainError } from "../../../../shared/domain/error/domain.error";
 
 class MissingExchangeOfferedBookError extends DomainError {
   constructor(bookId?: string) {

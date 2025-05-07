@@ -7,12 +7,8 @@ class Book implements DomainEntity<Book> {
   private _title: string;
   private _author: string;
   private _summary: string;
-  private _genre: string;
   private _cover: string | null;
   private _readed: Boolean;
-  private _readedAt: Date | null;
-  private _publisher: string;
-  private _publishedAt: Date;
   private _desiredExchanges: BookExchange[];
   private _offeredExchanges: BookExchange[];
   private _createdAt: Date;
@@ -23,12 +19,8 @@ class Book implements DomainEntity<Book> {
     title,
     author,
     summary,
-    genre,
     cover,
     readed,
-    readedAt,
-    publisher,
-    publishedAt,
     desiredExchanges,
     offeredExchanges,
     createdAt,
@@ -38,12 +30,8 @@ class Book implements DomainEntity<Book> {
     this.title = title;
     this.author = author;
     this.summary = summary;
-    this.genre = genre;
     this.cover = cover;
     this.readed = readed;
-    this.readedAt = readedAt;
-    this.publisher = publisher;
-    this.publishedAt = publishedAt;
     this.desiredExchanges = desiredExchanges || [];
     this.offeredExchanges = offeredExchanges || [];
     this.createdAt = createdAt;
@@ -74,36 +62,12 @@ class Book implements DomainEntity<Book> {
     this._author = value;
   }
 
-  get publishedAt(): Date {
-    return this._publishedAt;
-  }
-
-  set publishedAt(value: Date) {
-    this._publishedAt = value;
-  }
-
-  get genre(): string {
-    return this._genre;
-  }
-
-  set genre(value: string) {
-    this._genre = value;
-  }
-
   get summary(): string {
     return this._summary;
   }
 
   set summary(value: string) {
     this._summary = value;
-  }
-
-  get publisher(): string {
-    return this._publisher;
-  }
-
-  set publisher(value: string) {
-    this._publisher = value;
   }
 
   get cover(): string | null {
@@ -125,14 +89,6 @@ class Book implements DomainEntity<Book> {
     }
 
     this._readed = value;
-  }
-
-  get readedAt(): Date | null {
-    return this._readedAt;
-  }
-
-  set readedAt(value: Date | null) {
-    this._readedAt = value;
   }
 
   get desiredExchanges(): BookExchange[] {
@@ -173,12 +129,8 @@ class Book implements DomainEntity<Book> {
       title: this.title,
       author: this.author,
       summary: this.summary,
-      genre: this.genre,
       cover: this.cover,
       readed: this.readed,
-      readedAt: this.readedAt,
-      publisher: this.publisher,
-      publishedAt: this.publishedAt,
       desiredExchanges: this.desiredExchanges.map((exchange) =>
         exchange.toLiteral(),
       ),
@@ -196,12 +148,8 @@ class Book implements DomainEntity<Book> {
       title: this.title,
       author: this.author,
       summary: this.summary,
-      genre: this.genre,
       cover: this.cover,
       readed: this.readed,
-      readedAt: this.readedAt,
-      publisher: this.publisher,
-      publishedAt: this.publishedAt,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };

@@ -11,8 +11,7 @@ class GetBooksService {
   async execute({
     page,
     pageSize,
-    author,
-    genre,
+    title,
     readed,
     orderBy,
   }: GetBooksDto): Promise<Paginated<Book>> {
@@ -20,8 +19,7 @@ class GetBooksService {
       page,
       pageSize,
       readed,
-      author,
-      genre,
+      title,
       orderBy,
     );
   }

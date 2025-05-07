@@ -5,12 +5,8 @@ interface BookDTO {
   title: string;
   author: string;
   summary: string;
-  genre: string;
   cover: string | null;
   readed: boolean | null;
-  readedAt: Date | null;
-  publisher: string;
-  publishedAt: Date;
   desiredExchanges?: BookExchange[];
   offeredExchanges?: BookExchange[];
   createdAt: Date;

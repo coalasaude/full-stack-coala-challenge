@@ -39,12 +39,8 @@ class BookRepositoryPrisma implements BookRepository {
       title: entity.title,
       author: entity.author,
       summary: entity.summary,
-      genre: entity.genre,
       cover: entity.cover,
       readed: entity.readed,
-      readedAt: entity.readedAt,
-      publisher: entity.publisher,
-      publishedAt: entity.publishedAt,
       desiredExchanges: this.mapExchangesToEntity(entity.desiredExchanges),
       offeredExchanges: this.mapExchangesToEntity(entity.offeredExchanges),
       createdAt: entity.createdAt,
@@ -74,16 +70,14 @@ class BookRepositoryPrisma implements BookRepository {
     page: number,
     pageSize: number,
     readed: boolean | null,
-    author: string | null,
-    genre: string | null,
+    title: string | null,
     orderBy: { field: string; direction: "asc" | "desc" },
   ): Promise<Paginated<Book>> {
     const skip = (page - 1) * pageSize;
 
     const where: Prisma.BookWhereInput = {};
     if (readed !== null) where.readed = readed;
-    if (author) where.author = { contains: author, mode: "insensitive" };
-    if (genre) where.genre = { contains: genre, mode: "insensitive" };
+    if (title) where.title = { contains: title, mode: "insensitive" };
 
     const orderByClause: Prisma.BookOrderByWithRelationInput = orderBy
       ? { [orderBy.field]: orderBy.direction }
@@ -142,12 +136,8 @@ class BookRepositoryPrisma implements BookRepository {
           title: book.title,
           author: book.author,
           summary: book.summary,
-          genre: book.genre,
           cover: book.cover,
           readed: book.readed,
-          readedAt: book.readedAt,
-          publisher: book.publisher,
-          publishedAt: book.publishedAt,
           desiredExchanges: this.mapExchangesToEntity(book.desiredExchanges),
           offeredExchanges: this.mapExchangesToEntity(book.offeredExchanges),
           createdAt: book.createdAt,

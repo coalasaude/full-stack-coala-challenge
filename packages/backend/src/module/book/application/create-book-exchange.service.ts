@@ -6,7 +6,7 @@ import { BookExchangeRepository } from "../domain/repository/book-exchange.repos
 import { MissingExchangeDesiredBookError } from "../domain/error/missing-exchange-desired-book.error";
 import { MissingExchangeOfferedBookError } from "../domain/error/missing-exchange-offered-book.error";
 import { Book } from "../domain/entity/book";
-import { PhoneVO } from "src/shared/domain/value-object/phone.vo";
+import { PhoneVO } from "../../../shared/domain/value-object/phone.vo";
 
 @Injectable()
 class CreateBookExchangeService {

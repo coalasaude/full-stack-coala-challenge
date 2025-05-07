@@ -37,15 +37,6 @@ class CreateBookRequest {
   summary!: string;
 
   @ApiProperty({
-    description: "The genre of the book",
-    example: "Fantasy",
-    required: true,
-  })
-  @IsString()
-  @IsNotEmpty()
-  genre!: string;
-
-  @ApiProperty({
     description: "The URL of the book's cover image",
     example: "https://example.com/cover.jpg",
     required: false,
@@ -62,33 +53,6 @@ class CreateBookRequest {
   @IsBoolean()
   @IsOptional()
   readed!: boolean | null;
-
-  @ApiProperty({
-    description: "The date when the book was read (ISO 8601 format)",
-    example: "2025-05-01T00:00:00Z",
-    required: false,
-  })
-  @IsISO8601()
-  @IsOptional()
-  readedAt!: string | null;
-
-  @ApiProperty({
-    description: "The publisher of the book",
-    example: "Allen & Unwin",
-    required: true,
-  })
-  @IsString()
-  @IsNotEmpty()
-  publisher!: string;
-
-  @ApiProperty({
-    description: "The publication date of the book (ISO 8601 format)",
-    example: "1954-07-29T00:00:00Z",
-    required: true,
-  })
-  @IsISO8601()
-  @IsNotEmpty()
-  publishedAt!: string;
 }
 
 export { CreateBookRequest };

@@ -1014,12 +1014,8 @@ export namespace Prisma {
     title: string | null
     author: string | null
     summary: string | null
-    genre: string | null
     cover: string | null
     readed: boolean | null
-    readedAt: Date | null
-    publisher: string | null
-    publishedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1029,12 +1025,8 @@ export namespace Prisma {
     title: string | null
     author: string | null
     summary: string | null
-    genre: string | null
     cover: string | null
     readed: boolean | null
-    readedAt: Date | null
-    publisher: string | null
-    publishedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1044,12 +1036,8 @@ export namespace Prisma {
     title: number
     author: number
     summary: number
-    genre: number
     cover: number
     readed: number
-    readedAt: number
-    publisher: number
-    publishedAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1061,12 +1049,8 @@ export namespace Prisma {
     title?: true
     author?: true
     summary?: true
-    genre?: true
     cover?: true
     readed?: true
-    readedAt?: true
-    publisher?: true
-    publishedAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1076,12 +1060,8 @@ export namespace Prisma {
     title?: true
     author?: true
     summary?: true
-    genre?: true
     cover?: true
     readed?: true
-    readedAt?: true
-    publisher?: true
-    publishedAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1091,12 +1071,8 @@ export namespace Prisma {
     title?: true
     author?: true
     summary?: true
-    genre?: true
     cover?: true
     readed?: true
-    readedAt?: true
-    publisher?: true
-    publishedAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1179,12 +1155,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover: string | null
     readed: boolean
-    readedAt: Date | null
-    publisher: string
-    publishedAt: Date
     createdAt: Date
     updatedAt: Date
     _count: BookCountAggregateOutputType | null
@@ -1211,12 +1183,8 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     summary?: boolean
-    genre?: boolean
     cover?: boolean
     readed?: boolean
-    readedAt?: boolean
-    publisher?: boolean
-    publishedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     offeredExchanges?: boolean | Book$offeredExchangesArgs<ExtArgs>
@@ -1229,12 +1197,8 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     summary?: boolean
-    genre?: boolean
     cover?: boolean
     readed?: boolean
-    readedAt?: boolean
-    publisher?: boolean
-    publishedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["book"]>
@@ -1244,12 +1208,8 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     summary?: boolean
-    genre?: boolean
     cover?: boolean
     readed?: boolean
-    readedAt?: boolean
-    publisher?: boolean
-    publishedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["book"]>
@@ -1259,17 +1219,13 @@ export namespace Prisma {
     title?: boolean
     author?: boolean
     summary?: boolean
-    genre?: boolean
     cover?: boolean
     readed?: boolean
-    readedAt?: boolean
-    publisher?: boolean
-    publishedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "summary" | "genre" | "cover" | "readed" | "readedAt" | "publisher" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
+  export type BookOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "author" | "summary" | "cover" | "readed" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
   export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     offeredExchanges?: boolean | Book$offeredExchangesArgs<ExtArgs>
     desiredExchanges?: boolean | Book$desiredExchangesArgs<ExtArgs>
@@ -1289,12 +1245,8 @@ export namespace Prisma {
       title: string
       author: string
       summary: string
-      genre: string
       cover: string | null
       readed: boolean
-      readedAt: Date | null
-      publisher: string
-      publishedAt: Date
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["book"]>
@@ -1726,12 +1678,8 @@ export namespace Prisma {
     readonly title: FieldRef<"Book", 'String'>
     readonly author: FieldRef<"Book", 'String'>
     readonly summary: FieldRef<"Book", 'String'>
-    readonly genre: FieldRef<"Book", 'String'>
     readonly cover: FieldRef<"Book", 'String'>
     readonly readed: FieldRef<"Book", 'Boolean'>
-    readonly readedAt: FieldRef<"Book", 'DateTime'>
-    readonly publisher: FieldRef<"Book", 'String'>
-    readonly publishedAt: FieldRef<"Book", 'DateTime'>
     readonly createdAt: FieldRef<"Book", 'DateTime'>
     readonly updatedAt: FieldRef<"Book", 'DateTime'>
   }
@@ -3299,12 +3247,8 @@ export namespace Prisma {
     title: 'title',
     author: 'author',
     summary: 'summary',
-    genre: 'genre',
     cover: 'cover',
     readed: 'readed',
-    readedAt: 'readedAt',
-    publisher: 'publisher',
-    publishedAt: 'publishedAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -3414,12 +3358,8 @@ export namespace Prisma {
     title?: StringFilter<"Book"> | string
     author?: StringFilter<"Book"> | string
     summary?: StringFilter<"Book"> | string
-    genre?: StringFilter<"Book"> | string
     cover?: StringNullableFilter<"Book"> | string | null
     readed?: BoolFilter<"Book"> | boolean
-    readedAt?: DateTimeNullableFilter<"Book"> | Date | string | null
-    publisher?: StringFilter<"Book"> | string
-    publishedAt?: DateTimeFilter<"Book"> | Date | string
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
     offeredExchanges?: BookExchangeListRelationFilter
@@ -3431,12 +3371,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     summary?: SortOrder
-    genre?: SortOrder
     cover?: SortOrderInput | SortOrder
     readed?: SortOrder
-    readedAt?: SortOrderInput | SortOrder
-    publisher?: SortOrder
-    publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     offeredExchanges?: BookExchangeOrderByRelationAggregateInput
@@ -3451,12 +3387,8 @@ export namespace Prisma {
     title?: StringFilter<"Book"> | string
     author?: StringFilter<"Book"> | string
     summary?: StringFilter<"Book"> | string
-    genre?: StringFilter<"Book"> | string
     cover?: StringNullableFilter<"Book"> | string | null
     readed?: BoolFilter<"Book"> | boolean
-    readedAt?: DateTimeNullableFilter<"Book"> | Date | string | null
-    publisher?: StringFilter<"Book"> | string
-    publishedAt?: DateTimeFilter<"Book"> | Date | string
     createdAt?: DateTimeFilter<"Book"> | Date | string
     updatedAt?: DateTimeFilter<"Book"> | Date | string
     offeredExchanges?: BookExchangeListRelationFilter
@@ -3468,12 +3400,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     summary?: SortOrder
-    genre?: SortOrder
     cover?: SortOrderInput | SortOrder
     readed?: SortOrder
-    readedAt?: SortOrderInput | SortOrder
-    publisher?: SortOrder
-    publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BookCountOrderByAggregateInput
@@ -3489,12 +3417,8 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Book"> | string
     author?: StringWithAggregatesFilter<"Book"> | string
     summary?: StringWithAggregatesFilter<"Book"> | string
-    genre?: StringWithAggregatesFilter<"Book"> | string
     cover?: StringNullableWithAggregatesFilter<"Book"> | string | null
     readed?: BoolWithAggregatesFilter<"Book"> | boolean
-    readedAt?: DateTimeNullableWithAggregatesFilter<"Book"> | Date | string | null
-    publisher?: StringWithAggregatesFilter<"Book"> | string
-    publishedAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
   }
@@ -3572,12 +3496,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover?: string | null
     readed?: boolean
-    readedAt?: Date | string | null
-    publisher: string
-    publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     offeredExchanges?: BookExchangeCreateNestedManyWithoutOfferedBookInput
@@ -3589,12 +3509,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover?: string | null
     readed?: boolean
-    readedAt?: Date | string | null
-    publisher: string
-    publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     offeredExchanges?: BookExchangeUncheckedCreateNestedManyWithoutOfferedBookInput
@@ -3606,12 +3522,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     offeredExchanges?: BookExchangeUpdateManyWithoutOfferedBookNestedInput
@@ -3623,12 +3535,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     offeredExchanges?: BookExchangeUncheckedUpdateManyWithoutOfferedBookNestedInput
@@ -3640,12 +3548,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover?: string | null
     readed?: boolean
-    readedAt?: Date | string | null
-    publisher: string
-    publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3655,12 +3559,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3670,12 +3570,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3795,17 +3691,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3837,12 +3722,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     summary?: SortOrder
-    genre?: SortOrder
     cover?: SortOrder
     readed?: SortOrder
-    readedAt?: SortOrder
-    publisher?: SortOrder
-    publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3852,12 +3733,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     summary?: SortOrder
-    genre?: SortOrder
     cover?: SortOrder
     readed?: SortOrder
-    readedAt?: SortOrder
-    publisher?: SortOrder
-    publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3867,12 +3744,8 @@ export namespace Prisma {
     title?: SortOrder
     author?: SortOrder
     summary?: SortOrder
-    genre?: SortOrder
     cover?: SortOrder
     readed?: SortOrder
-    readedAt?: SortOrder
-    publisher?: SortOrder
-    publishedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3936,20 +3809,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3962,6 +3821,17 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type BookScalarRelationFilter = {
@@ -3997,6 +3867,20 @@ export namespace Prisma {
     exchangedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type BookExchangeCreateNestedManyWithoutOfferedBookInput = {
@@ -4037,10 +3921,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -4115,6 +3995,10 @@ export namespace Prisma {
     connect?: BookWhereUniqueInput
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type BookUpdateOneRequiredWithoutOfferedExchangesNestedInput = {
     create?: XOR<BookCreateWithoutOfferedExchangesInput, BookUncheckedCreateWithoutOfferedExchangesInput>
     connectOrCreate?: BookCreateOrConnectWithoutOfferedExchangesInput
@@ -4173,17 +4057,6 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -4275,20 +4148,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4301,6 +4160,31 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type BookExchangeCreateWithoutOfferedBookInput = {
@@ -4409,12 +4293,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover?: string | null
     readed?: boolean
-    readedAt?: Date | string | null
-    publisher: string
-    publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     desiredExchanges?: BookExchangeCreateNestedManyWithoutDesiredBookInput
@@ -4425,12 +4305,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover?: string | null
     readed?: boolean
-    readedAt?: Date | string | null
-    publisher: string
-    publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     desiredExchanges?: BookExchangeUncheckedCreateNestedManyWithoutDesiredBookInput
@@ -4446,12 +4322,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover?: string | null
     readed?: boolean
-    readedAt?: Date | string | null
-    publisher: string
-    publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     offeredExchanges?: BookExchangeCreateNestedManyWithoutOfferedBookInput
@@ -4462,12 +4334,8 @@ export namespace Prisma {
     title: string
     author: string
     summary: string
-    genre: string
     cover?: string | null
     readed?: boolean
-    readedAt?: Date | string | null
-    publisher: string
-    publishedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
     offeredExchanges?: BookExchangeUncheckedCreateNestedManyWithoutOfferedBookInput
@@ -4494,12 +4362,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     desiredExchanges?: BookExchangeUpdateManyWithoutDesiredBookNestedInput
@@ -4510,12 +4374,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     desiredExchanges?: BookExchangeUncheckedUpdateManyWithoutDesiredBookNestedInput
@@ -4537,12 +4397,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     offeredExchanges?: BookExchangeUpdateManyWithoutOfferedBookNestedInput
@@ -4553,12 +4409,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     author?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
-    genre?: StringFieldUpdateOperationsInput | string
     cover?: NullableStringFieldUpdateOperationsInput | string | null
     readed?: BoolFieldUpdateOperationsInput | boolean
-    readedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    publisher?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     offeredExchanges?: BookExchangeUncheckedUpdateManyWithoutOfferedBookNestedInput

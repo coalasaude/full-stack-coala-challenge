@@ -11,8 +11,7 @@ abstract class BookRepository {
     page: number,
     pageSize: number,
     readed: boolean | null,
-    authror: string | null,
-    genre: string | null,
+    title: string | null,
     orderBy: { field: string; direction: "asc" | "desc" },
   ): Promise<Paginated<Book>>;
   abstract save(book: Book): Promise<Book>;

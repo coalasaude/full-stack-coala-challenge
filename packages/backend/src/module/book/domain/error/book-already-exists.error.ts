@@ -1,5 +1,5 @@
 import { HttpStatus } from "@nestjs/common";
-import { DomainError } from "src/shared/domain/error/domain.error";
+import { DomainError } from "../../../../shared/domain/error/domain.error";
 
 class BookAlreadyExistsError extends DomainError {
   constructor(title: string, author: string) {

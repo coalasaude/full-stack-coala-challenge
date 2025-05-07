@@ -13,12 +13,8 @@ class CreateBookService {
     title,
     author,
     summary,
-    genre,
     cover,
     readed,
-    readedAt,
-    publisher,
-    publishedAt,
   }: CreateBookDto): Promise<string> {
     const bookExists = await this._bookRepository.findByTitleAndAuthor(
       title,
@@ -36,12 +32,8 @@ class CreateBookService {
       title: title,
       author: author,
       summary: summary,
-      genre: genre,
       cover: cover,
       readed: readed,
-      readedAt: readedAt ? new Date(readedAt) : null,
-      publisher: publisher,
-      publishedAt: new Date(publishedAt),
       createdAt: new Date(),
       updatedAt: new Date(),
     });

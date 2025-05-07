@@ -3,7 +3,7 @@ import { BookExchangeDTO } from "./dto/book-exchange.dto";
 import { Book } from "./book";
 import { MissingExchangeDesiredBookError } from "../error/missing-exchange-desired-book.error";
 import { MissingExchangeOfferedBookError } from "../error/missing-exchange-offered-book.error";
-import { PhoneVO } from "src/shared/domain/value-object/phone.vo";
+import { PhoneVO } from "../../../../shared/domain/value-object/phone.vo";
 import { OfferedBookMustBeReadedError } from "../error/offered-book-must-be-readed.error";
 import { DesiredBookMustBeUnreadError } from "../error/desired-book-must-be-unread.error";
 

@@ -1,4 +1,4 @@
-import { DomainError } from "src/shared/domain/error/domain.error";
+import { DomainError } from "./domain.error";
 
 class InvalidPhoneNumberError extends DomainError {
   constructor(phone: string) {

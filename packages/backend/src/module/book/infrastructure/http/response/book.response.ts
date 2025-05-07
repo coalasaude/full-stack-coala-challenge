@@ -1,11 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { BookExchange } from "src/module/book/domain/entity/book-exchange";
+import { BookExchangeResponse } from "./book-exchange.response";
 
 class BookResponse {
   @ApiProperty({
     description: "The unique identifier of the book",
     example: "123e4567-e89b-12d3-a456-426614174000",
   })
-  id: string | null;
+  id: string;
 
   @ApiProperty({
     description: "The title of the book",
@@ -26,12 +28,6 @@ class BookResponse {
   summary: string;
 
   @ApiProperty({
-    description: "The genre of the book",
-    example: "Fantasy",
-  })
-  genre: string;
-
-  @ApiProperty({
     description: "The URL of the book's cover image",
     example: "https://example.com/cover.jpg",
     required: false,
@@ -45,23 +41,18 @@ class BookResponse {
   readed: boolean;
 
   @ApiProperty({
-    description: "The date when the book was read",
-    example: "2025-05-01T00:00:00Z",
-    required: false,
+    description:
+      "Indicates whether the book has been setted on a exchange as an desired book",
+    type: [BookExchangeResponse],
   })
-  readedAt: Date | null;
+  desiredExchanges: BookExchange[];
 
   @ApiProperty({
-    description: "The publisher of the book",
-    example: "Allen & Unwin",
+    description:
+      "Indicates whether the book has been setted on a exchange as an offer book",
+    type: [BookExchangeResponse],
   })
-  publisher: string;
-
-  @ApiProperty({
-    description: "The publication date of the book",
-    example: "1954-07-29T00:00:00Z",
-  })
-  publishedAt: Date;
+  offeredExchanges: BookExchange[];
 
   @ApiProperty({
     description: "The date when the book was created",

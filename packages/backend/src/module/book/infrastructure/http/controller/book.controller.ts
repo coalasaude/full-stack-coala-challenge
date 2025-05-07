@@ -4,6 +4,8 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
+  Patch,
   Post,
   Query,
 } from "@nestjs/common";
@@ -19,6 +21,9 @@ import {
 import { CreateBookResponse } from "../response/create-book.response";
 import { GetBooksService } from "src/module/book/application/get-books.service";
 import { GetBookResponse } from "../response/get-book.response";
+import { PatchBookService } from "src/module/book/application/patch-book.service";
+import { PatchBookRequest } from "../request/patch-book.request";
+import { PatchBookResponse } from "../response/patch-book.response";
 
 @ApiTags("Book")
 @Controller("book")
@@ -26,6 +31,7 @@ class BookController {
   constructor(
     private readonly _createBookService: CreateBookService,
     private readonly _getBooksService: GetBooksService,
+    private readonly _patchBookService: PatchBookService,
   ) {}
 
   @ApiOperation({ summary: "Create book" })
@@ -71,16 +77,10 @@ class BookController {
     example: true,
   })
   @ApiQuery({
-    name: "author",
-    description: "Filter books by author name (case-insensitive)",
+    name: "title",
+    description: "Filter books by title name (case-insensitive)",
     required: false,
-    example: "J.R.R. Tolkien",
-  })
-  @ApiQuery({
-    name: "genre",
-    description: "Filter books by genre (case-insensitive)",
-    required: false,
-    example: "Fantasy",
+    example: "The Lord of the Rings",
   })
   @ApiQuery({
     name: "orderByField",
@@ -100,8 +100,7 @@ class BookController {
     @Query("page") page: number = 1,
     @Query("pageSize") pageSize: number = 10,
     @Query("readed") readed: string | null = null,
-    @Query("author") author: string | null = null,
-    @Query("genre") genre: string | null = null,
+    @Query("title") title: string | null = null,
     @Query("orderByField") orderByField: string = "createdAt",
     @Query("orderByDirection") orderByDirection: "asc" | "desc" = "desc",
   ) {
@@ -109,10 +108,32 @@ class BookController {
       page,
       pageSize,
       readed: readed === "true" ? true : readed === "false" ? false : null,
-      author,
-      genre,
+      title,
       orderBy: { field: orderByField, direction: orderByDirection },
     });
+  }
+
+  @ApiOperation({ summary: "Update book" })
+  @ApiBody({ type: PatchBookRequest })
+  @ApiResponse({
+    description: "The book has been successfully updated.",
+    type: PatchBookResponse,
+    status: HttpStatus.OK,
+  })
+  @Patch(":id")
+  @HttpCode(HttpStatus.OK)
+  async updateBook(
+    @Param("id") id: string,
+    @Body() updateBookDto: PatchBookRequest,
+  ) {
+    await this._patchBookService.execute({
+      bookId: id,
+      readed: updateBookDto.readed,
+    });
+
+    return {
+      id,
+    };
   }
 }
 
