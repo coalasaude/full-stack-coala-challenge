@@ -1,4 +1,3 @@
-import { Input } from "@/components/atoms/input";
 import { Select } from "../select";
 import { Button } from "@/components/atoms/button";
 import { Dialog } from "@radix-ui/themes";
@@ -6,6 +5,8 @@ import { useBook } from "@/context/book/hook";
 import { Book } from "@/types/book";
 import { FormEvent, useMemo, useState } from "react";
 import { AddExchangeDialogProps } from "./props";
+import { InputMask } from "@react-input/mask";
+import { PhoneInput } from "@/components/atoms/phone-input";
 
 const AddExchangeDialog = ({ close }: AddExchangeDialogProps) => {
   const { books, createExchange } = useBook();
@@ -73,7 +74,7 @@ const AddExchangeDialog = ({ close }: AddExchangeDialogProps) => {
           >
             Phone number for contact
           </label>
-          <Input
+          <PhoneInput
             id="phone"
             value={phone}
             onChange={(e) => setPhone(e.currentTarget.value)}
