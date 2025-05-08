@@ -41,13 +41,13 @@ const BookProvider = ({ children }: BookProviderProps) => {
 
   const {
     data,
-    isLoading: IsFetchLoading,
+    isValidating: IsFetchLoading,
     mutate,
   } = useSWR(queryString, fetcher, {
     keepPreviousData: true,
   });
 
-  const { data: singleData, isLoading: IsSingleFetchLoading } = useSWR(
+  const { data: singleData, isValidating: IsSingleFetchLoading } = useSWR(
     `/book?${new URLSearchParams({
       page: "1",
       pageSize: "200",
@@ -60,7 +60,7 @@ const BookProvider = ({ children }: BookProviderProps) => {
 
   const isLoading = useMemo(() => {
     return IsFetchLoading || isRequestLoading || IsSingleFetchLoading;
-  }, [IsFetchLoading, isRequestLoading]);
+  }, [IsFetchLoading, isRequestLoading, IsSingleFetchLoading]);
 
   return (
     <BookContext.Provider
