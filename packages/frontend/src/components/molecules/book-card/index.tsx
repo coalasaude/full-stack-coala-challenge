@@ -3,7 +3,11 @@ import { BookCheck, BookOpen, BookX, Heart } from "lucide-react";
 // import { BookCardProps } from "./props";
 import { useMemo } from "react";
 // import placeholder from "@/app/placeholder.png";
-import { Badge, Box, Button, Card } from "@radix-ui/themes";
+import { Badge } from "@/components/atoms/badge";
+import { Card } from "@/components/atoms/card";
+import { CardContent } from "@/components/atoms/card-content";
+import { CardFooter } from "@/components/atoms/card-footer";
+import { Button } from "@/components/atoms/button";
 // import { useBook } from "@/context/book/hook";
 
 function BookCard() {
@@ -14,8 +18,9 @@ function BookCard() {
     title: "The Lord of the Rings",
     author: "J.R.R. Tolkien",
     summary: "An epic fantasy novel about the journey to destroy the One Ring.",
-    cover: "https://example.com/cover.jpg",
-    readed: true,
+    cover:
+      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg",
+    readed: false,
     desiredExchanges: [
       {
         id: "123e4567-e89b-12d3-a456-426614174000",
@@ -46,10 +51,11 @@ function BookCard() {
     updatedAt: "2025-05-02T00:00:00Z",
   };
 
-  const hasActiveExchange = useMemo(
-    () => book.desiredExchanges.length > 0 || book.offeredExchanges.length > 0,
-    [book],
-  );
+  // const hasActiveExchange = useMemo(
+  //   () => book.desiredExchanges.length > 0 || book.offeredExchanges.length > 0,
+  //   [book],
+  // );
+  const hasActiveExchange = false;
 
   const phoneNumber = useMemo(() => {
     const exchange = book.desiredExchanges[0] || book.offeredExchanges[0];
@@ -89,7 +95,7 @@ function BookCard() {
         />
         <div className="absolute top-2 right-2 flex flex-col gap-2">
           <Badge
-            variant={book.readed ? "outline" : "soft"}
+            variant={book.readed ? "default" : "secondary"}
             className="flex items-center gap-1"
           >
             {book.readed ? (
@@ -117,16 +123,16 @@ function BookCard() {
           )}
         </div>
       </div>
-      <Box>
+      <CardContent>
         <h3 className="font-semibold text-lg line-clamp-1">{book.title}</h3>
         <p className="text-muted-foreground text-sm">{book.author}</p>
-      </Box>
-      <Box className="p-4 pt-0 flex justify-between">
+      </CardContent>
+      <CardFooter className="flex justify-between">
         <div className="text-sm text-muted-foreground">{footerContent}</div>
         {!hasActiveExchange ? (
           <Button
             variant="outline"
-            size="1"
+            size="sm"
             className="ml-2"
             // onClick={() => changeBookReadness(book.id, !book.readed)}
           >
@@ -138,7 +144,7 @@ function BookCard() {
             Mark {book.readed ? " Unread" : "Read"}
           </Button>
         ) : null}
-      </Box>
+      </CardFooter>
     </Card>
   );
 }

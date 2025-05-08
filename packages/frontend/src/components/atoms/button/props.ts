@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes } from "react";
 import { VariantProps } from "class-variance-authority";
-import { buttonVariant } from "./variants";
+import { buttonVariants } from "./variants";
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariant> {}
+    VariantProps<typeof buttonVariants> {}
 
 export type { ButtonProps };

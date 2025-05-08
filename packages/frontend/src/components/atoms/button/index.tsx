@@ -1,19 +1,23 @@
 import * as React from "react";
 import clsx from "clsx";
-import { buttonVariant } from "./variants";
 import { ButtonProps } from "./props";
+import { buttonVariants } from "./variants";
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  variant = "primary",
+  variant = "default",
+  size = "default",
   className,
   ...props
 }) => {
   return (
-    <button className={clsx(buttonVariant({ variant, className }))} {...props}>
+    <button
+      className={clsx(buttonVariants({ variant, size, className }))}
+      {...props}
+    >
       {children}
     </button>
   );
 };
 
-export default Button;
+export { Button };
