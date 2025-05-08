@@ -47,14 +47,26 @@ const BookProvider = ({ children }: BookProviderProps) => {
     keepPreviousData: true,
   });
 
+  const { data: singleData, isLoading: IsSingleFetchLoading } = useSWR(
+    `/book?${new URLSearchParams({
+      page: "1",
+      pageSize: "200",
+    }).toString()}`,
+    fetcher,
+    {
+      keepPreviousData: true,
+    },
+  );
+
   const isLoading = useMemo(() => {
-    return IsFetchLoading || isRequestLoading;
+    return IsFetchLoading || isRequestLoading || IsSingleFetchLoading;
   }, [IsFetchLoading, isRequestLoading]);
 
   return (
     <BookContext.Provider
       value={{
         books: data?.items || [],
+        unfilteredBooks: singleData?.items || [],
         isLoading,
         currentPage,
         setCurrentPage,

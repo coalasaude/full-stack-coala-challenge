@@ -5,11 +5,10 @@ import { useBook } from "@/context/book/hook";
 import { Book } from "@/types/book";
 import { FormEvent, useMemo, useState } from "react";
 import { AddExchangeDialogProps } from "./props";
-import { InputMask } from "@react-input/mask";
 import { PhoneInput } from "@/components/atoms/phone-input";
 
 const AddExchangeDialog = ({ close }: AddExchangeDialogProps) => {
-  const { books, createExchange } = useBook();
+  const { unfilteredBooks, createExchange } = useBook();
   const [phone, setPhone] = useState("");
   const [desiredBookId, setDesiredBookId] = useState("");
   const [offeredBookId, setOfferedBookId] = useState("");
@@ -20,7 +19,7 @@ const AddExchangeDialog = ({ close }: AddExchangeDialogProps) => {
   });
 
   const readedBooks = useMemo(() => {
-    return books
+    return unfilteredBooks
       .filter(
         (book) =>
           book.readed &&
@@ -28,9 +27,9 @@ const AddExchangeDialog = ({ close }: AddExchangeDialogProps) => {
           book.offeredExchanges.length < 1,
       )
       .map(selectMapBook);
-  }, [books]);
+  }, [unfilteredBooks]);
   const desiredBooks = useMemo(() => {
-    return books
+    return unfilteredBooks
       .filter(
         (book) =>
           !book.readed &&
@@ -38,7 +37,7 @@ const AddExchangeDialog = ({ close }: AddExchangeDialogProps) => {
           book.offeredExchanges.length < 1,
       )
       .map(selectMapBook);
-  }, [books]);
+  }, [unfilteredBooks]);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();

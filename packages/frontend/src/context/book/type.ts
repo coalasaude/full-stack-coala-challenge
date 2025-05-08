@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 
 type BookContextType = {
   books: Book[];
+  unfilteredBooks: Book[];
   isLoading: boolean;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
