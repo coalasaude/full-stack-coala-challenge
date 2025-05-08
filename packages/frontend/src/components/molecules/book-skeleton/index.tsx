@@ -3,7 +3,7 @@ import { CardContent } from "@/components/atoms/card-content";
 import { CardFooter } from "@/components/atoms/card-footer";
 import { CardSkeleton } from "@/components/atoms/card-skeleton";
 
-export function BookSkeleton() {
+const BookSkeleton = () => {
   return (
     <Card className="overflow-hidden">
       <div className="relative aspect-[3/4] w-full bg-muted">
@@ -19,4 +19,6 @@ export function BookSkeleton() {
       </CardFooter>
     </Card>
   );
-}
+};
+
+export { BookSkeleton };

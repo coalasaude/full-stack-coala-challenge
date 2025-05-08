@@ -1,9 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
-import { Button } from "@radix-ui/themes";
-
 import { BookCard } from "@/components/molecules/book-card";
 import { Card } from "@/components/atoms/card";
 import { Select } from "@/components/molecules/select";
@@ -12,55 +8,23 @@ import { bookOrderByOptions } from "./book-order-by-options";
 import { Input } from "@/components/atoms/input";
 import { Pagination } from "@/components/molecules/pagination";
 import { LoadingList } from "../loading-list";
+import { Button } from "@/components/atoms/button";
+import { useBook } from "@/context/book/hook";
 
-export function BookList() {
-  const totalPages = 10;
-  const books = [
-    {
-      id: "123e4567-e89b-12d3-a456-426614174000",
-      title: "The Lord of the Rings",
-      author: "J.R.R. Tolkien",
-      summary:
-        "An epic fantasy novel about the journey to destroy the One Ring.",
-      cover: "https://example.com/cover.jpg",
-      readed: true,
-      desiredExchanges: [
-        {
-          id: "123e4567-e89b-12d3-a456-426614174000",
-          offeredBook: {},
-          offeredBookId: "123e4567-e89b-12d3-a456-426614174000",
-          desiredBook: {},
-          desiredBookId: "123e4567-e89b-12d3-a456-426614174000",
-          exchangeOwnerPhone: "+1-555-555-5555",
-          exchangedAt: "2025-05-01T00:00:00Z",
-          createdAt: "2025-05-01T00:00:00Z",
-          updatedAt: "2025-05-02T00:00:00Z",
-        },
-      ],
-      offeredExchanges: [
-        {
-          id: "123e4567-e89b-12d3-a456-426614174000",
-          offeredBook: {},
-          offeredBookId: "123e4567-e89b-12d3-a456-426614174000",
-          desiredBook: {},
-          desiredBookId: "123e4567-e89b-12d3-a456-426614174000",
-          exchangeOwnerPhone: "+1-555-555-5555",
-          exchangedAt: "2025-05-01T00:00:00Z",
-          createdAt: "2025-05-01T00:00:00Z",
-          updatedAt: "2025-05-02T00:00:00Z",
-        },
-      ],
-      createdAt: "2025-05-01T00:00:00Z",
-      updatedAt: "2025-05-02T00:00:00Z",
-    },
-  ];
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filter, setFilter] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("title");
-  const [activeTab, setActiveTab] = useState("all");
-  const itemsPerPage = 6;
+const BookList = () => {
+  const {
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    books,
+    isLoading,
+    titleFilter,
+    setTitleFilter,
+    statusFilter,
+    setStatusFilter,
+    orderBy,
+    setOrderBy,
+  } = useBook();
 
   return (
     <div className="space-y-6">
@@ -69,9 +33,9 @@ export function BookList() {
           <div className="w-full md:max-w-md">
             <Input
               placeholder="Search by title..."
-              value={searchQuery}
+              value={titleFilter}
               onChange={(e) => {
-                setSearchQuery(e.target.value);
+                setTitleFilter(e.target.value);
                 setCurrentPage(1);
               }}
             />
@@ -79,16 +43,26 @@ export function BookList() {
 
           <div className="flex flex-wrap sm:flex-nowrap gap-2 justify-end w-full sm:w-auto">
             <div className="w-full sm:w-40">
-              <Select defaultValue="all" options={bookStatusFilterOptions} />
+              <Select
+                value={statusFilter}
+                onValueChange={setStatusFilter}
+                defaultValue="all"
+                options={bookStatusFilterOptions}
+              />
             </div>
             <div className="w-full sm:w-40">
-              <Select defaultValue="none" options={bookOrderByOptions} />
+              <Select
+                value={orderBy}
+                onValueChange={setOrderBy}
+                defaultValue="none"
+                options={bookOrderByOptions}
+              />
             </div>
           </div>
         </div>
       </Card>
 
-      {false ? (
+      {isLoading ? (
         <LoadingList />
       ) : (
         <>
@@ -96,7 +70,7 @@ export function BookList() {
             {books.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {books.map((book) => (
-                  <BookCard key={book.id} />
+                  <BookCard key={book.id} book={book} />
                 ))}
               </div>
             ) : (
@@ -108,8 +82,8 @@ export function BookList() {
                   variant="outline"
                   className="mt-4"
                   onClick={() => {
-                    setFilter("all");
-                    setSearchQuery("");
+                    setStatusFilter("all");
+                    setTitleFilter("");
                     setCurrentPage(1);
                   }}
                 >
@@ -130,4 +104,6 @@ export function BookList() {
       )}
     </div>
   );
-}
+};
+
+export { BookList };

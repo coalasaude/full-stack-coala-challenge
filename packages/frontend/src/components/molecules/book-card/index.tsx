@@ -1,61 +1,22 @@
 import Image from "next/image";
 import { BookCheck, BookOpen, BookX, Heart } from "lucide-react";
-// import { BookCardProps } from "./props";
 import { useMemo } from "react";
-// import placeholder from "@/app/placeholder.png";
+import placeholder from "@/app/placeholder.png";
 import { Badge } from "@/components/atoms/badge";
 import { Card } from "@/components/atoms/card";
 import { CardContent } from "@/components/atoms/card-content";
 import { CardFooter } from "@/components/atoms/card-footer";
 import { Button } from "@/components/atoms/button";
-// import { useBook } from "@/context/book/hook";
+import { BookCardProps } from "./props";
+import { useBook } from "@/context/book/hook";
 
-function BookCard() {
-  // { book }: BookCardProps
-  // const { changeBookReadness } = useBook();
-  const book = {
-    id: "123e4567-e89b-12d3-a456-426614174000",
-    title: "The Lord of the Rings",
-    author: "J.R.R. Tolkien",
-    summary: "An epic fantasy novel about the journey to destroy the One Ring.",
-    cover:
-      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg",
-    readed: false,
-    desiredExchanges: [
-      {
-        id: "123e4567-e89b-12d3-a456-426614174000",
-        offeredBook: {},
-        offeredBookId: "123e4567-e89b-12d3-a456-426614174000",
-        desiredBook: {},
-        desiredBookId: "123e4567-e89b-12d3-a456-426614174000",
-        exchangeOwnerPhone: "+1-555-555-5555",
-        exchangedAt: "2025-05-01T00:00:00Z",
-        createdAt: "2025-05-01T00:00:00Z",
-        updatedAt: "2025-05-02T00:00:00Z",
-      },
-    ],
-    offeredExchanges: [
-      {
-        id: "123e4567-e89b-12d3-a456-426614174000",
-        offeredBook: {},
-        offeredBookId: "123e4567-e89b-12d3-a456-426614174000",
-        desiredBook: {},
-        desiredBookId: "123e4567-e89b-12d3-a456-426614174000",
-        exchangeOwnerPhone: "+1-555-555-5555",
-        exchangedAt: "2025-05-01T00:00:00Z",
-        createdAt: "2025-05-01T00:00:00Z",
-        updatedAt: "2025-05-02T00:00:00Z",
-      },
-    ],
-    createdAt: "2025-05-01T00:00:00Z",
-    updatedAt: "2025-05-02T00:00:00Z",
-  };
+const BookCard = ({ book }: BookCardProps) => {
+  const { toggleBookReadness } = useBook();
 
-  // const hasActiveExchange = useMemo(
-  //   () => book.desiredExchanges.length > 0 || book.offeredExchanges.length > 0,
-  //   [book],
-  // );
-  const hasActiveExchange = false;
+  const hasActiveExchange = useMemo(
+    () => book.desiredExchanges.length > 0 || book.offeredExchanges.length > 0,
+    [book],
+  );
 
   const phoneNumber = useMemo(() => {
     const exchange = book.desiredExchanges[0] || book.offeredExchanges[0];
@@ -69,7 +30,7 @@ function BookCard() {
     if (hasActiveExchange) {
       return (
         <>
-          Book owner contact: <span>{phoneNumber}</span>
+          Exchange owner contact: <span>{phoneNumber}</span>
         </>
       );
     }
@@ -88,7 +49,7 @@ function BookCard() {
     <Card className="overflow-hidden">
       <div className="relative aspect-[3/4] w-full">
         <Image
-          src={book.cover}
+          src={book.cover || placeholder}
           alt={book.title}
           fill
           className="object-cover"
@@ -134,7 +95,7 @@ function BookCard() {
             variant="outline"
             size="sm"
             className="ml-2"
-            // onClick={() => changeBookReadness(book.id, !book.readed)}
+            onClick={() => toggleBookReadness(book.id, !book.readed)}
           >
             {book.readed ? (
               <BookX className="h-4 w-4 mr-1" />
@@ -147,6 +108,6 @@ function BookCard() {
       </CardFooter>
     </Card>
   );
-}
+};
 
 export { BookCard };

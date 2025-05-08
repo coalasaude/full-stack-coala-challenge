@@ -2,10 +2,57 @@ import { Input } from "@/components/atoms/input";
 import { Select } from "../select";
 import { Button } from "@/components/atoms/button";
 import { Dialog } from "@radix-ui/themes";
+import { useBook } from "@/context/book/hook";
+import { Book } from "@/types/book";
+import { FormEvent, useMemo, useState } from "react";
+import { AddExchangeDialogProps } from "./props";
 
-const AddExchangeDialog = () => {
+const AddExchangeDialog = ({ close }: AddExchangeDialogProps) => {
+  const { books, createExchange } = useBook();
+  const [phone, setPhone] = useState("");
+  const [desiredBookId, setDesiredBookId] = useState("");
+  const [offeredBookId, setOfferedBookId] = useState("");
+
+  const selectMapBook = (book: Book) => ({
+    label: `${book.title} by ${book.author}`,
+    value: book.id,
+  });
+
+  const readedBooks = useMemo(() => {
+    return books
+      .filter(
+        (book) =>
+          book.readed &&
+          book.desiredExchanges.length < 1 &&
+          book.offeredExchanges.length < 1,
+      )
+      .map(selectMapBook);
+  }, [books]);
+  const desiredBooks = useMemo(() => {
+    return books
+      .filter(
+        (book) =>
+          !book.readed &&
+          book.desiredExchanges.length < 1 &&
+          book.offeredExchanges.length < 1,
+      )
+      .map(selectMapBook);
+  }, [books]);
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    await createExchange({
+      exchangeOwnerPhone: phone,
+      desiredBookId,
+      offeredBookId,
+    });
+
+    close();
+  };
+
   return (
-    <form className="m-2">
+    <form className="m-2" onSubmit={onSubmit}>
       <div className="mb-10">
         <Dialog.Title>
           <span className="text-lg font-semibold leading-none tracking-tight mb-2">
@@ -26,7 +73,12 @@ const AddExchangeDialog = () => {
           >
             Phone number for contact
           </label>
-          <Input id="phone" required />
+          <Input
+            id="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.currentTarget.value)}
+            required
+          />
         </fieldset>
 
         <fieldset className="grid gap-2 mb-6">
@@ -34,10 +86,9 @@ const AddExchangeDialog = () => {
             Book to Offer (Read Book)
           </label>
           <Select
-            options={[
-              { value: "read", label: "Readed Book" },
-              { value: "desired", label: "Desired Book" },
-            ]}
+            value={offeredBookId}
+            onValueChange={setOfferedBookId}
+            options={readedBooks}
             placeholder="Select a book to offer"
           />
         </fieldset>
@@ -47,10 +98,9 @@ const AddExchangeDialog = () => {
             Book You Want (Desired Book)
           </label>
           <Select
-            options={[
-              { value: "read", label: "Readed Book" },
-              { value: "desired", label: "Desired Book" },
-            ]}
+            value={desiredBookId}
+            onValueChange={setDesiredBookId}
+            options={desiredBooks}
             placeholder="Select a book you want"
           />
         </fieldset>

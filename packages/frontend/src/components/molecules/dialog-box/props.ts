@@ -2,7 +2,7 @@ import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
 
 interface AddBookDialogProps extends HTMLAttributes<HTMLDivElement> {
   button: ReactNode;
-  isOpen?: boolean;
+  open?: boolean;
   onOpenChange?: Dispatch<SetStateAction<boolean>>;
 }
 

@@ -1,7 +1,11 @@
 import { Dialog } from "radix-ui";
 import { AddBookDialogProps } from "./props";
 
-const DialogBox = ({ button, children, ...props }: AddBookDialogProps) => (
+const DialogBox = ({
+  button,
+  children,
+  ...props
+}: AddBookDialogProps) => (
   <Dialog.Root {...props}>
     <Dialog.Trigger asChild>{button}</Dialog.Trigger>
     <Dialog.Portal>

@@ -1,6 +1,6 @@
 import { BookSkeleton } from "@/components/molecules/book-skeleton";
 
-function LoadingList() {
+const LoadingList = () => {
   return (
     <section className="space-y-6">
       <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -12,6 +12,6 @@ function LoadingList() {
       </article>
     </section>
   );
-}
+};
 
 export { LoadingList };

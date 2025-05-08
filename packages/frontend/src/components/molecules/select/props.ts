@@ -6,6 +6,7 @@ interface SelectOption {
 interface SelectProps {
   options: SelectOption[];
   defaultValue?: string;
+  value?: string;
   onValueChange?: (value: string) => void;
   placeholder?: string;
   className?: string;

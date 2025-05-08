@@ -7,7 +7,7 @@ import { DialogBox } from "@/components/molecules/dialog-box";
 import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 
-export function PageHeader() {
+const PageHeader = () => {
   const [showAddBook, setShowAddBook] = useState(false);
   const [showAddExchange, setShowAddExchange] = useState(false);
 
@@ -21,7 +21,7 @@ export function PageHeader() {
       </div>
       <div className="flex gap-2">
         <DialogBox
-          isOpen={showAddBook}
+          open={showAddBook}
           onOpenChange={setShowAddBook}
           button={
             <Button onClick={() => setShowAddBook(true)}>
@@ -30,10 +30,10 @@ export function PageHeader() {
             </Button>
           }
         >
-          <AddBookDialog />
+          <AddBookDialog close={() => setShowAddBook(false)} />
         </DialogBox>
         <DialogBox
-          isOpen={showAddExchange}
+          open={showAddExchange}
           onOpenChange={setShowAddExchange}
           button={
             <Button variant="outline" onClick={() => setShowAddExchange(true)}>
@@ -42,9 +42,11 @@ export function PageHeader() {
             </Button>
           }
         >
-          <AddExchangeDialog />
+          <AddExchangeDialog close={() => setShowAddExchange(false)} />
         </DialogBox>
       </div>
     </div>
   );
-}
+};
+
+export { PageHeader };

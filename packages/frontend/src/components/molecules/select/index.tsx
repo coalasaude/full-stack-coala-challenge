@@ -6,12 +6,17 @@ import clsx from "clsx";
 const Select: FC<SelectProps> = ({
   options,
   defaultValue,
+  value,
   onValueChange,
   className,
   placeholder = "Select an option",
 }) => {
   return (
-    <RadixSelect.Root defaultValue={defaultValue} onValueChange={onValueChange}>
+    <RadixSelect.Root
+      defaultValue={defaultValue}
+      value={value}
+      onValueChange={onValueChange}
+    >
       <RadixSelect.Trigger
         className={clsx(
           `SelectTrigger inline-flex items-center justify-between rounded-md border border-input bg-background outline-none px-3 py-2 text-sm shadow-sm disabled:cursor-not-allowed disabled:opacity-50 w-full`,

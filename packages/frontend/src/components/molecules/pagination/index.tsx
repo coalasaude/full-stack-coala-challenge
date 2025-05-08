@@ -4,11 +4,11 @@ import { Button } from "@/components/atoms/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PaginationProps } from "./props";
 
-function Pagination({
+const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
-}: PaginationProps) {
+}: PaginationProps) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   let pagesToShow = pages;
   if (totalPages > 5) {
@@ -67,6 +67,6 @@ function Pagination({
       </Button>
     </div>
   );
-}
+};
 
 export { Pagination };
