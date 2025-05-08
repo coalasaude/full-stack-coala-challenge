@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend - Bookshelf Elder
+
+This is the frontend package for the **Bookshelf Elder** project, built using **Next.js**. It provides the user interface for managing a collection of books, including features like adding, filtering, and viewing books.
+
+## Features
+
+- **Book Management**: Add, edit, and delete books in your collection.
+- **Filtering and Sorting**: Filter books by status or sort them by various criteria.
+- **Responsive Design**: Fully responsive UI for desktop and mobile devices.
+- **Radix UI Integration**: Accessible and customizable components using Radix UI.
+- **Modern Styling**: Styled with Tailwind CSS for a clean and consistent design.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Ensure you have the following installed:
+
+- **Node.js** (v22 or higher)
+- **npm** or **yarn**
+
+### Installation
+
+1. Navigate to the `packages/frontend` directory:
+   ```bash
+   cd packages/frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+### Running the Development Server
+
+Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To build the application for production:
 
-## Learn More
+```bash
+npm run build
+# or
+yarn build
+```
 
-To learn more about Next.js, take a look at the following resources:
+The production-ready files will be available in the `.next` directory.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+  packages/frontend/
+  ├── public/                 # Static assets
+  ├── src/
+  │   ├── components/         # Reusable UI components
+  │   ├── pages/              # Next.js pages
+  │   ├── styles/             # Global styles
+  │   ├── context/            # React context for state management
+  │   └── hooks/              # Custom React hooks
+  ├── .eslintrc.js            # ESLint configuration
+  ├── tailwind.config.js      # Tailwind CSS configuration
+  └── package.json            # Project metadata and scripts
+```
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js: React framework for server-side rendering and static site generation.
+- Radix UI: Accessible and customizable UI components.
+- Tailwind CSS: Utility-first CSS framework for styling.
+- TypeScript: Strongly typed JavaScript for better developer experience.
